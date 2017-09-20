@@ -12,8 +12,8 @@ $('.submit-button').click(function() {
   else if (type == "Protein") {
     // var trans = translatePROT(sequence);
     // alert("Protein");
-    $('.result').text(type);
-  }
+    $('.result').text(trans);
+  }  
 });
 
 

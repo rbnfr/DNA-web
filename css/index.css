@@ -28,7 +28,16 @@ body, html{
   margin : 5px;
   float:left;
 }
+.toolbar-link{
+  float: right;
+  margin-top: 15px;
+  margin-right: 13px;
+  text-decoration: none;
+  height: auto;
+  color : Black;
+  font-weight: bold;
 
+}
 .toolbar-button{
   float: right;
   margin-top: 15px;
