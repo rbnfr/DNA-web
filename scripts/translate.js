@@ -25,14 +25,19 @@ function getSequence() {
 
 
 function translateRNA(sequence){
-  var seq = sequence;
-  var length = seq.length;
-  alert(length);
-  var trans = "";
+  var translation = {
+    'A':'U',
+    'T':'A',
+    'C':'G',
+    'G':'C'
+  }
+  
   var i;
-  for (var i = 0; i < length; i++) {
-    var codon = seq.substring(0,i+3);
-    trans += codon;
+  var trans = "";
+
+  for (var i = 0; i < sequence.length; i++) {
+    var char = sequence.substring(i, i+1);
+    trans+=translation[char];
   }
   return trans;
 
