@@ -33,15 +33,17 @@
             <input class="sequence" type="text" name="Sequence" min="3"><br>
 
             Convert to:<br>
-            <input  class="radio"         type="radio"  name="ToRNA">RNA<br>
-            <input  class="radio"         type="radio"  name="ToProtein">Protein<br><br>
-            <input  class="submit-button"    type="button" name="submit-button" value="Submit">
+            <input  id="rad1" type="radio"  name="type" value="RNA" checked="checked" />RNA<br>
+            <input  id="rad2" type="radio"  name="type" value="Protein"/>Protein<br><br>
+
+            <input  id="submit-button" class="submit-button"  type="button" name="submit-button" value="Submit">
 
             </fieldset>
 
             <fieldset>
               <legend>Results</legend>
-              <input class="result" type="text" name="result" readonly>
+              <p id="result_seq" class="result"></p>
+              <!-- <input class="result" type="text" name="result" readonly /> -->
             </fieldset>
 
 
