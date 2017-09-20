@@ -31,12 +31,12 @@ function translateRNA(sequence){
     'C':'G',
     'G':'C'
   }
-  
+  var seq = sequence.toUpperCase().replace(/\s/g, '');
   var i;
   var trans = "";
 
-  for (var i = 0; i < sequence.length; i++) {
-    var char = sequence.substring(i, i+1);
+  for (var i = 0; i < seq.length; i++) {
+    var char = seq.substring(i, i+1);
     trans+=translation[char];
   }
   return trans;

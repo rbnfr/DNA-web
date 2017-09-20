@@ -14,8 +14,8 @@
       <div class="toolvar-inner">
         <a href="Index.html"><img src="img/dna.png" class="toolbar-logo toolbar-item"></a>
         <a href="Index.html" class="toolbar-title">DNA-Web</a>
-        <a class="toolbar-item toolbar-button" onclick="OpenSignInForm()" href="#">Sign-In</a>
-        <a class="toolbar-item toolbar-button" onclick="OpenSignUpForm()" href="#">Sign-Up</a>
+        <!-- <a class="toolbar-item toolbar-button" onclick="OpenSignInForm()" href="#">Sign-In</a> -->
+        <!-- <a class="toolbar-item toolbar-button" onclick="OpenSignUpForm()" href="#">Sign-Up</a> -->
       </div>
 
     </div>
@@ -30,19 +30,19 @@
             <legend>DNA-data</legend>
 
             DNA sequence:<br>
-            <input class="sequence" type="text" name="Sequence" min="3"><br>
+            <input id = "seq-id" class="sequence" type="text" name="Sequence" min=3><br>
 
             Convert to:<br>
-            <input  id="rad1" type="radio"  name="type" value="RNA" checked="checked" />RNA<br>
-            <input  id="rad2" type="radio"  name="type" value="Protein"/>Protein<br><br>
+            <input  id = "rad1" type="radio"  name="type" value="RNA" checked="checked" />RNA<br>
+            <input  id = "rad2" type="radio"  name="type" value="Protein"/>Protein<br><br>
 
-            <input  id="submit-button" class="submit-button"  type="button" name="submit-button" value="Submit">
+            <input  id = "submit-button" class="submit-button"  type="button" name="submit-button" value="Submit">
 
             </fieldset>
 
             <fieldset>
               <legend>Results</legend>
-              <p id="result_seq" class="result"></p>
+              <p id = "result_seq" class="result"></p>
               <!-- <input class="result" type="text" name="result" readonly /> -->
             </fieldset>
 
