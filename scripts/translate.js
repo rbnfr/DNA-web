@@ -39,6 +39,7 @@ function translateRNA(sequence){
     var char = seq.substring(i, i+1);
     trans+=translation[char];
   }
+
   return trans;
 
 };
