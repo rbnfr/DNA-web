@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" type="text/css" href="/css/index.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="/scripts/translate.js"></script>
+
     <title>DNA-web</title>
   </head>
   <body>
@@ -24,24 +24,26 @@
 
       <div class="section">
         <div class="conversor">
-          <form class="conversor-form" action="index.html" method="post">
+          <form class="conversor-form" id="conversor" method="post">
 
             <fieldset>
             <legend>DNA-data</legend>
 
             DNA sequence:<br>
-            <input class="sequence" type="text" name="Sequence" min="3" pattern="[ACTG]"><br>
+            <input class="sequence" type="text" name="Sequence" min="3"><br>
 
             Convert to:<br>
             <input  class="radio"         type="radio"  name="ToRNA">RNA<br>
             <input  class="radio"         type="radio"  name="ToProtein">Protein<br><br>
-            <button class="submit-button" type="submit" name="submit" >Submit</button>
+            <input  class="submit-button"    type="button" name="submit-button" value="Submit">
+
             </fieldset>
 
             <fieldset>
               <legend>Results</legend>
               <input class="result" type="text" name="result" readonly>
             </fieldset>
+
 
           </form>
 
@@ -52,4 +54,5 @@
     </div>
 
   </body>
+  <script src="/scripts/translate.js"></script>
 </html>
