@@ -1,0 +1,12 @@
+.toolbar{
+  width : 100%;
+  height: 50px;
+  background-color: orange;
+  color : white;
+}
+
+.toolbar-item{
+  height: 40px;
+  margin : 5px;
+  float:left;
+}
