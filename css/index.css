@@ -1,3 +1,11 @@
+body, html{
+  padding : 0;
+  margin : 0;
+  width: 100%;
+  height: 100%;
+  max-width: 1920px;
+  align-content: center;
+}
 .toolbar{
   width : 100%;
   height: 50px;
@@ -5,8 +13,45 @@
   color : white;
 }
 
+.toolbar-title{
+  float: left;
+  margin-top: 15px;
+  margin-right: 13px;
+  text-decoration: none;
+  height: auto;
+  color : Black;
+  font-weight: bold;
+}
+
 .toolbar-item{
   height: 40px;
   margin : 5px;
   float:left;
+}
+
+.toolbar-button{
+  float: right;
+  margin-top: 15px;
+  margin-right: 13px;
+  text-decoration: none;
+  height: auto;
+  color : black;
+  font-weight: bold;
+}
+
+.conversor{
+  padding: 50px;
+}
+
+input[name="Sequence"] {
+    width: 100%;
+    height: auto;
+    margin: 10px 5;
+    box-sizing: border-box;
+}
+
+input[name=result]{
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
 }

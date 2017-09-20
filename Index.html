@@ -2,18 +2,51 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-widht">
+    <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" type="text/css" href="/css/index.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/scripts/translate.js"></script>
     <title>DNA-web</title>
   </head>
   <body>
     <div class="toolbar">
 
-      <div class="tollvar-inner">
+      <div class="toolvar-inner">
         <a href="Index.html"><img src="img/dna.png" class="toolbar-logo toolbar-item"></a>
+        <a href="Index.html" class="toolbar-title">DNA-Web</a>
         <a class="toolbar-item toolbar-button" onclick="OpenSignInForm()" href="#">Sign-In</a>
         <a class="toolbar-item toolbar-button" onclick="OpenSignUpForm()" href="#">Sign-Up</a>
+      </div>
+
+    </div>
+
+    <div class="sections">
+
+      <div class="section">
+        <div class="conversor">
+          <form class="conversor-form" action="index.html" method="post">
+
+            <fieldset>
+            <legend>DNA-data</legend>
+
+            DNA sequence:<br>
+            <input class="sequence" type="text" name="Sequence" min="3" pattern="[ACTG]"><br>
+
+            Convert to:<br>
+            <input  class="radio"         type="radio"  name="ToRNA">RNA<br>
+            <input  class="radio"         type="radio"  name="ToProtein">Protein<br><br>
+            <button class="submit-button" type="submit" name="submit" >Submit</button>
+            </fieldset>
+
+            <fieldset>
+              <legend>Results</legend>
+              <input class="result" type="text" name="result" readonly>
+            </fieldset>
+
+          </form>
+
+        </div>
+
       </div>
 
     </div>
