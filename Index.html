@@ -7,16 +7,17 @@
 
 
     <title>DNA-web</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head>
   <body>
     <div class="toolbar">
 
-      <div class="toolvar-inner">
+      <div class="toolbar-inner">
+
         <a href="Index.html"><img src="img/dna.png" class="toolbar-logo toolbar-item"></a>
         <a href="Index.html" class="toolbar-title">DNA-Web</a>
-        <a href="http://www.bioinformatics.org/sms2/random_dna.html" class="toolbar-link" target="_blank">Generate random sequence</a>
-        <!-- <a class="toolbar-item toolbar-button" onclick="OpenSignInForm()" href="#">Sign-In</a> -->
-        <!-- <a class="toolbar-item toolbar-button" onclick="OpenSignUpForm()" href="#">Sign-Up</a> -->
+
       </div>
 
     </div>
@@ -31,7 +32,9 @@
             <legend>DNA-data</legend>
 
             DNA sequence:<br>
-            <input id = "seq-id" class="sequence" type="text" name="Sequence" min=3><br>
+            <!-- <input id = "seq-id" class="sequence" type="text" name="Sequence" value="" min=3 required><br> -->
+            <textarea id = "seq-id" class="sequence"  name="sequence" rows="5" cols="150"></textarea><br>
+            <button id = "generator" type="button" name="generator" value="Generate random sequence">Generate random sequence</button><br><br>
 
             Convert to:<br>
             <input  id = "rad1" type="radio"  name="type" value="RNA" checked="checked" />RNA<br>
@@ -43,10 +46,9 @@
 
             <fieldset>
               <legend>Results</legend>
-              <p id = "result_seq" class="result"></p>
-              <!-- <input class="result" type="text" name="result" readonly /> -->
+              <!-- <input id = "seq-id" class="result" type="text" name="result" value="" readonly><br> -->
+              <textarea id="seq-id" class="result" name="result" rows="5" cols="150"></textarea>          
             </fieldset>
-
 
           </form>
 
@@ -57,6 +59,9 @@
     </div>
 
   </body>
-  <script src="/scripts/translate.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="/scripts/translate.js" type="text/javascript"></script>
+  <script src="/scripts/generate_seq.js" type="text/javascript"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/autosize.js/3.0.15/autosize.min.js'></script>
+  <script src="https://rawgit.com/yuanqing/autosize-input/master/autosize-input.min.js"></script>
+
 </html>
