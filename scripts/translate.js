@@ -6,13 +6,11 @@ $('.submit-button').click(function() {
     $('.result').val(trans);
   }
   else if (type == "Protein") {
-    alert("Protein");
     var protein = translatePROT(sequence);
     var letters = protein[0];
     var chain = protein[1];
     $('.result1').val(letters);
     $('.result2').val(chain);
-
     }
 });
 
@@ -44,7 +42,6 @@ function translatePROT(sequence){
   var protein = "";
   var chain = ""
   var i;
-  alert("Bucle");
   for (var i = 0; i < (sequence.length-2); i=i+3) {
     var codon = sequence.substring(i, i+3);
 
