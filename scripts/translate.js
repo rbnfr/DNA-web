@@ -1,19 +1,18 @@
 $('.submit-button').click(function() {
-  // alert("Try again");
-  // alert("First line");
   var sequence = getSequence();
-  // alert(sequence);
   var type = $('input[name="type"]:checked').val();
-  // alert(type);
   if (type == "RNA") {
     var trans = translateRNA(sequence);
-    // alert("RNA");
     $('.result').val(trans);
   }
   else if (type == "Protein") {
     alert("Protein");
     var protein = translatePROT(sequence);
-    $('.result').val(protein);
+    var letters = protein[0];
+    var chain = protein[1];
+    $('.result1').val(letters);
+    $('.result2').val(chain);
+
     }
 });
 
@@ -24,7 +23,6 @@ function getSequence() {
 }
 
 function translateRNA(sequence){
-  // alert("Begin translateRNA");
   var translation = {
     'A':'U',
     'T':'A',
@@ -44,39 +42,35 @@ function translateRNA(sequence){
 
 function translatePROT(sequence){
   var protein = "";
+  var chain = ""
   var i;
   alert("Bucle");
   for (var i = 0; i < (sequence.length-2); i=i+3) {
     var codon = sequence.substring(i, i+3);
-    // alert(codon);
-    // if (codon = (/A*/i)) { protein+='A' }
-    // else if (codon == 'TTT') { protein+='T' }
-    // alert(codon.match(/GC./i));
-    // var match = codon.match(/GC./i);
 
-    if      ( /GC./i.test(codon))        { protein += 'A'; }    //Alanine    
-    else if ( /TG[TC]/i.test(codon))     { protein += 'C'; }    // Cysteine
-    else if ( /GA[TC]/i.test(codon))     { protein += 'D'; }    // Aspartic Acid
-    else if ( /GA[AG]/i.test(codon))     { protein += 'E'; }    // Glutamic Acid
-    else if ( /TT[TC]/i.test(codon))     { protein += 'F'; }    // Phenylalanine
-    else if ( /GG./i.test(codon))        { protein += 'G'; }    // Glycine
-    else if ( /CA[TC]/i.test(codon))     { protein += 'H'; }    // Histidine
-    else if ( /AT[TCA]/i.test(codon))    { protein += 'I'; }    // Isoleucine
-    else if ( /AA[AG]/i.test(codon))     { protein += 'K'; }    // Lysine
-    else if ( /TT[AG]|CT./i.test(codon)) { protein += 'L'; }    // Leucine
-    else if ( /ATG/i.test(codon))        { protein += 'M'; }    // Methionine
-    else if ( /AA[TC]/i.test(codon))     { protein += 'N'; }    // Asparagine
-    else if ( /CC./i.test(codon))        { protein += 'P'; }    // Proline
-    else if ( /CA[AG]/i.test(codon))     { protein += 'Q'; }    // Glutamine
-    else if ( /CG.|AG[AG]/i.test(codon)) { protein += 'R'; }    // Arginine
-    else if ( /TC.|AG[TC]/i.test(codon)) { protein += 'S'; }    // Serine
-    else if ( /AC./i.test(codon))        { protein += 'T'; }    // Threonine
-    else if ( /GT./i.test(codon))        { protein += 'V'; }    // Valine
-    else if ( /TGG/i.test(codon))        { protein += 'W'; }    // Tryptophan
-    else if ( /TA[TC]/i.test(codon))     { protein += 'Y'; }    // Tyrosine
-    else if ( /TA[AG]|TGA/i.test(codon)) { protein += '_'; }    // Stop
+    if      ( /GC./i.test(codon))        { protein += 'A'; chain += 'Alanine'+'-'; }         //Alanine
+    else if ( /TG[TC]/i.test(codon))     { protein += 'C'; chain += 'Cysteine'+'-';}         // Cysteine
+    else if ( /GA[TC]/i.test(codon))     { protein += 'D'; chain += 'Aspartic_Acid'+'-';}    // Aspartic Acid
+    else if ( /GA[AG]/i.test(codon))     { protein += 'E'; chain += 'Glutamic_Acid'+'-';}    // Glutamic Acid
+    else if ( /TT[TC]/i.test(codon))     { protein += 'F'; chain += 'Phenylalanine'+'-';}    // Phenylalanine
+    else if ( /GG./i.test(codon))        { protein += 'G'; chain += 'Glycine'+'-';}          // Glycine
+    else if ( /CA[TC]/i.test(codon))     { protein += 'H'; chain += 'Histidine'+'-';}        // Histidine
+    else if ( /AT[TCA]/i.test(codon))    { protein += 'I'; chain += 'Isoleucine'+'-';}       // Isoleucine
+    else if ( /AA[AG]/i.test(codon))     { protein += 'K'; chain += 'Lysine'+'-';}           // Lysine
+    else if ( /TT[AG]|CT./i.test(codon)) { protein += 'L'; chain += 'Leucine'+'-';}          // Leucine
+    else if ( /ATG/i.test(codon))        { protein += 'M'; chain += 'Methionine'+'-';}       // Methionine
+    else if ( /AA[TC]/i.test(codon))     { protein += 'N'; chain += 'Asparagine'+'-';}       // Asparagine
+    else if ( /CC./i.test(codon))        { protein += 'P'; chain += 'Proline'+'-';}          // Proline
+    else if ( /CA[AG]/i.test(codon))     { protein += 'Q'; chain += 'Glutamine'+'-';}        // Glutamine
+    else if ( /CG.|AG[AG]/i.test(codon)) { protein += 'R'; chain += 'Arginine'+'-';}         // Arginine
+    else if ( /TC.|AG[TC]/i.test(codon)) { protein += 'S'; chain += 'Serine'+'-';}           // Serine
+    else if ( /AC./i.test(codon))        { protein += 'T'; chain += 'Threonine'+'-';}        // Threonine
+    else if ( /GT./i.test(codon))        { protein += 'V'; chain += 'Valine'+'-';}           // Valine
+    else if ( /TGG/i.test(codon))        { protein += 'W'; chain += 'Tryptophan'+'-';}       // Tryptophan
+    else if ( /TA[TC]/i.test(codon))     { protein += 'Y'; chain += 'Tyrosine'+'-';}         // Tyrosine
+    else if ( /TA[AG]|TGA/i.test(codon)) { protein += '_'; chain += 'STOP'+'-';}             // Stop
     else {alert("[-El codon introducido no se corresponde con ningun aminoacido]-");}
   }
 
-  return protein;
+  return [protein, chain];
 }
