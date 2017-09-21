@@ -3,7 +3,7 @@ $('.submit-button').click(function() {
   var type = $('input[name="type"]:checked').val();
   if (type == "RNA") {
     var trans = translateRNA(sequence);
-    $('.result').val(trans);
+    $('.result1').val(trans);
   }
   else if (type == "Protein") {
     var protein = translatePROT(sequence);
