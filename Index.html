@@ -44,7 +44,8 @@
             <input id="freq" type="text" name="freq" size="1" title="Frequency of mutation in %" pattern="[0-9]" ><br>
             <input id="mut2" type="radio" name="mutation" value="No" checked="checked"/>No <br><br>
 
-            <input  id = "submit-button" class="submit-button"  type="button" name="submit-button" value="Submit">
+            <input id = "submit-button" class="submit-button"  type="button" name="submit-button" value="Ttranslate">
+            <!-- <input id="save-button" type="button" name="save" value="Save"> -->
 
             </fieldset>
 
@@ -56,6 +57,10 @@
               Chain:<br>
               <textarea id="seq-id2" class="result2" name="result" rows="5" cols="150"></textarea><br>
 
+            </fieldset>
+            <fieldset>
+              <legend>Time elapsed</legend>
+              <p id="time"></p>
             </fieldset>
 
           </form>
@@ -71,5 +76,6 @@
   <script src="/scripts/generate_seq.js" type="text/javascript"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/autosize.js/3.0.15/autosize.min.js'></script>
   <script src="https://rawgit.com/yuanqing/autosize-input/master/autosize-input.min.js"></script>
+  <script src="/scripts/FileSaver.js"></script>
 
 </html>

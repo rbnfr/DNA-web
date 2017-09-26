@@ -8,17 +8,31 @@ $('.submit-button').click(function() {
 
 
   if (type == "RNA") {
+    var before = new Date().getTime();
     var trans = translateRNA(sequence, mutate, frequency);
+    var after = new Date().getTime();
+    var duration = after-before;
     $('.result1').val(trans);
+    $('#time').text(duration+' miliseconds');
   }
   else if (type == "Protein") {
+    var before = new Date().getTime();
     var protein = translatePROT(sequence, mutate, frequency);
+    var after = new Date().getTime();
+    var duration = after-before;
     var letters = protein[0];
     var chain = protein[1];
     $('.result1').val(letters);
     $('.result2').val(chain);
+    $('#time').text(duration+' miliseconds');
     }
 });
+
+// $('#save-button').click(function() {
+//   var translation_text = "RNA sequence: " + $('#seq-id').val();
+//   var blob = new Blob([translation_text+'/nTest'], {type: "text/plain;charset=utf-8"});
+//   saveAs(blob, "Translation.txt");
+// });
 
 // function getSequence() {
 //   return document.forms["conversor"][1].value;
