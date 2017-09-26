@@ -1,6 +1,9 @@
 $('.submit-button').click(function() {
   var sequence = getSequence();
   var type = $('input[name="type"]:checked').val();
+  var mutate = $('input[name="mutation"]:checked').val();
+
+
   if (type == "RNA") {
     var trans = translateRNA(sequence);
     $('.result1').val(trans);
