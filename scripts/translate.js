@@ -4,9 +4,6 @@ $('.submit-button').click(function() {
   var mutate = $('input[name="mutation"]:checked').val();
   var frequency = $('input[name="freq"]').val();
 
-
-
-
   if (type == "RNA") {
     var before = new Date().getTime();
     var trans = translateRNA(sequence, mutate, frequency);
@@ -26,6 +23,15 @@ $('.submit-button').click(function() {
     $('.result2').val(chain);
     $('#time').text(duration+' miliseconds');
     }
+});
+
+$('#input').keypress(function(event) {
+  var code = (event.KeyCode ? event.KeyCode : event.which);
+
+  if (code == 13) {
+    alert(code + " --> Enter");
+  }
+
 });
 
 // $('#save-button').click(function() {
