@@ -6,6 +6,7 @@ body, html{
   max-width: 1920px;
   align-content: center;
 }
+
 .toolbar{
   width : 100%;
   height: 50px;
@@ -36,8 +37,8 @@ body, html{
   height: auto;
   color : Black;
   font-weight: bold;
-
 }
+
 .toolbar-button{
   float: right;
   margin-top: 15px;

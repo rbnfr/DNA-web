@@ -1,15 +1,18 @@
 $('.submit-button').click(function() {
-  var sequence = getSequence();
+  var sequence = document.forms["conversor"][1].value;
   var type = $('input[name="type"]:checked').val();
   var mutate = $('input[name="mutation"]:checked').val();
+  var frequency = $('input[name="freq"]').val();
+
+
 
 
   if (type == "RNA") {
-    var trans = translateRNA(sequence);
+    var trans = translateRNA(sequence, mutate, frequency);
     $('.result1').val(trans);
   }
   else if (type == "Protein") {
-    var protein = translatePROT(sequence);
+    var protein = translatePROT(sequence, mutate, frequency);
     var letters = protein[0];
     var chain = protein[1];
     $('.result1').val(letters);
@@ -17,13 +20,15 @@ $('.submit-button').click(function() {
     }
 });
 
-function getSequence() {
-  var form = document.forms["conversor"];
-  var seq = form[1].value;
-  return seq;
-}
+// function getSequence() {
+//   return document.forms["conversor"][1].value;
+//
+// var form = document.forms["conversor"];
+// var seq = form[1].value;
+// return seq;
+// }
 
-function translateRNA(sequence){
+function translateRNA(sequence, mutate, frequency){
   var translation = {
     'A':'U',
     'T':'A',
@@ -33,18 +38,70 @@ function translateRNA(sequence){
   var seq = sequence.toUpperCase().replace(/\s/g, '');
   var i;
   var trans = "";
+  var mutated_seq = "";
+
 
   for (var i = 0; i < seq.length; i++) {
     var char = seq.substring(i, i+1);
     trans+=translation[char];
   }
-  return trans;
+
+  if (mutate == "Yes" && frequency && 0!= frequency) {
+    // alert("Mutate");
+    var chars = ["A","U","C","G"];
+    var freq_per = 100/frequency;
+    var freq =(Math.floor(Math.random()*freq_per));
+
+    for (var i = 0; i < sequence.length; i = i + (Math.floor(Math.random()*freq))+1 ) {
+      var char = chars[Math.floor((Math.random() * chars.length))];
+      trans=trans.replaceAt(i, char);
+    }
+
+    return trans;
+
+    // return mutate(seq, frequency);
+  }
+
+  else {
+    return trans;
+  }
+
 }
 
-function translatePROT(sequence){
+function mutate(sequence, frequency){
+  var chars = ["A","U","C","G"];
+  var freq_per = 100/frequency;
+  var freq =(Math.floor(Math.random()*freq_per));
+
+  for (var i = 0; i < sequence.length; i = i + (Math.floor(Math.random()*freq))+1 ) {
+    var char = chars[Math.floor((Math.random() * chars.length))];
+    sequence=sequence.replaceAt(i, char);
+  }
+
+  return sequence;
+}
+
+String.prototype.replaceAt=function(index, replacement) {
+    return this.substr(0, index) + replacement+ this.substr(index + replacement.length);
+}
+
+function translatePROT(sequence, mutate, frequency){
   var protein = "";
   var chain = ""
   var i;
+
+  if (mutate == "Yes" && frequency && 0!= frequency) {
+    // alert("Mutate");
+    var chars = ["A","T","C","G"];
+    var freq_per = 100/frequency;
+    var freq =(Math.floor(Math.random()*freq_per));
+
+    for (var i = 0; i < sequence.length; i = i + (Math.floor(Math.random()*freq))+1 ) {
+      var char = chars[Math.floor((Math.random() * chars.length))];
+      sequence=sequence.replaceAt(i, char);
+    }
+  }
+
   for (var i = 0; i < (sequence.length-2); i=i+3) {
     var codon = sequence.substring(i, i+3);
 
