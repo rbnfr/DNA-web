@@ -35,19 +35,25 @@ function translateRNA(sequence, mutate, frequency){
     'C':'G',
     'G':'C'
   }
+
   var seq = sequence.toUpperCase().replace(/\s/g, '');
   var i;
   var trans = "";
-  var mutated_seq = "";
-
+  $('#seq-id').val(seq);
 
   for (var i = 0; i < seq.length; i++) {
     var char = seq.substring(i, i+1);
-    trans+=translation[char];
+    if (translation[char] === undefined) {
+      alert("Unrecognized base at position " + i + " : " + char);
+    }
+    else {
+      trans+=translation[char];
+    }
+
   }
 
+
   if (mutate == "Yes" && frequency && 0!= frequency) {
-    // alert("Mutate");
     var chars = ["A","U","C","G"];
     var freq_per = 100/frequency;
     var freq =(Math.floor(Math.random()*freq_per));
@@ -68,18 +74,18 @@ function translateRNA(sequence, mutate, frequency){
 
 }
 
-function mutate(sequence, frequency){
-  var chars = ["A","U","C","G"];
-  var freq_per = 100/frequency;
-  var freq =(Math.floor(Math.random()*freq_per));
-
-  for (var i = 0; i < sequence.length; i = i + (Math.floor(Math.random()*freq))+1 ) {
-    var char = chars[Math.floor((Math.random() * chars.length))];
-    sequence=sequence.replaceAt(i, char);
-  }
-
-  return sequence;
-}
+// function mutate(sequence, frequency){
+//   var chars = ["A","U","C","G"];
+//   var freq_per = 100/frequency;
+//   var freq =(Math.floor(Math.random()*freq_per));
+//
+//   for (var i = 0; i < sequence.length; i = i + (Math.floor(Math.random()*freq))+1 ) {
+//     var char = chars[Math.floor((Math.random() * chars.length))];
+//     sequence=sequence.replaceAt(i, char);
+//   }
+//
+//   return sequence;
+// }
 
 String.prototype.replaceAt=function(index, replacement) {
     return this.substr(0, index) + replacement+ this.substr(index + replacement.length);
@@ -89,9 +95,10 @@ function translatePROT(sequence, mutate, frequency){
   var protein = "";
   var chain = ""
   var i;
+  var sequence = sequence.toUpperCase().replace(/\s/g, '');
+  $('#seq-id').val(sequence);
 
   if (mutate == "Yes" && frequency && 0!= frequency) {
-    // alert("Mutate");
     var chars = ["A","T","C","G"];
     var freq_per = 100/frequency;
     var freq =(Math.floor(Math.random()*freq_per));
@@ -126,7 +133,7 @@ function translatePROT(sequence, mutate, frequency){
     else if ( /TGG/i.test(codon))        { protein += 'W'; chain += 'Tryptophan'+'-';}       // Tryptophan
     else if ( /TA[TC]/i.test(codon))     { protein += 'Y'; chain += 'Tyrosine'+'-';}         // Tyrosine
     else if ( /TA[AG]|TGA/i.test(codon)) { protein += '_'; chain += 'STOP'+'-';}             // Stop
-    else {alert("[-El codon introducido no se corresponde con ningun aminoacido]-");}
+    else {alert("Unrecognized codon starting at position " + i + " : " + codon);}
   }
 
   return [protein, chain];
