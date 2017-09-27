@@ -444,7 +444,7 @@ function updateProperties(seq) {
   console.log("Calculating hidrophobicity: Done");
 
   document.getElementById('length').innerHTML = seq.length;
-  document.getElementById('mass').innerHTML = mass;
+  document.getElementById('mass').innerHTML = mass + " amu";
   document.getElementById('pI').innerHTML = pI;
   document.getElementById('charge').innerHTML = charge;
   document.getElementById('hydrophobicity').innerHTML = hydrophobicity;
