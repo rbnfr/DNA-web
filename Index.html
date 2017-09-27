@@ -41,10 +41,11 @@
 
             Introduce mutations:<br>
             <input id="mut1" type="radio" name="mutation" value="Yes"/>Yes
-            <input id="freq" type="text" name="freq" size="1" title="Frequency of mutation in %" pattern="[0-9]" ><br>
+            <input id="freq" type="text" name="freq" size="1" title="Frequency of mutation in %" pattern="[0-9]" placeholder="%"><br>
             <input id="mut2" type="radio" name="mutation" value="No" checked="checked"/>No <br><br>
 
-            <input id = "submit-button" class="submit-button"  type="button" name="submit-button" value="Ttranslate">
+            <input id = "submit-button" class="submit-button"  type="button" name="submit-button" value="Translate">
+            <input id = "prop-button"   class="prop-button"    type="button" name="prop-button"   value="Calculate properties">
             <!-- <input id="save-button" type="button" name="save" value="Save"> -->
 
             </fieldset>
@@ -52,9 +53,11 @@
             <fieldset>
               <legend>Results</legend>
               <!-- <input id = "seq-id" class="result" type="text" name="result" value="" readonly><br> -->
-              One-Letter code:<br>
-              <textarea id="seq-id" class="result1" name="result" rows="5" cols="150"></textarea><br>
-              Chain:<br>
+              One-Letter chain:<br>
+              <textarea id="seq-id" class="result1" name="result" rows="5" cols="150" ></textarea><br>
+              Three letter chain:<br>
+              <textarea id="seq-id3" class="result3" name="result" rows="5" cols="150"></textarea><br>
+              Complete name chain:<br>
               <textarea id="seq-id2" class="result2" name="result" rows="5" cols="150"></textarea><br>
 
             </fieldset>
@@ -70,6 +73,65 @@
       </div>
 
     </div>
+    <table id="properties">
+              <tr>
+                <th>
+                  Peptide properties
+                </th>
+                <td></td>
+              </tr>
+              <tr>
+                <th class="aligntop">
+                  Sequence:
+                </th>
+                <td id="pepseq"></td>
+              </tr>
+              <tr>
+                <th>
+                  Length:
+                </th>
+                <td id="length"></td>
+              </tr>
+              <tr>
+                <th>
+                  Mass:
+                </th>
+                <td id="mass"></td>
+              </tr>
+              <tr>
+                <th>
+                  Isoelectric point (pI):
+                </th>
+                <td id="pI"></td>
+              </tr>
+              <tr>
+                <th>
+                  Net charge:
+                </th>
+                <td id="charge"></td>
+              </tr>
+              <tr>
+                <th>
+                  Hydrophobicity:
+                </th>
+                <td id="hydrophobicity"></td>
+              </tr>
+              <tr>
+                <th>
+                  Extinction coefficient:
+                </th>
+                <td id="extinction1"></td>
+              </tr>
+              <tr>
+                <th>
+                  Extinction coefficient:
+                </th>
+                <td id="extinction2"></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
 
   </body>
   <script src="/scripts/translate.js" type="text/javascript"></script>
@@ -77,5 +139,6 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/autosize.js/3.0.15/autosize.min.js'></script>
   <script src="https://rawgit.com/yuanqing/autosize-input/master/autosize-input.min.js"></script>
   <script src="/scripts/FileSaver.js"></script>
+  <script src="/scripts/properties.js"></script>
 
 </html>
