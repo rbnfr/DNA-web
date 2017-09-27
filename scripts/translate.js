@@ -324,6 +324,7 @@ function count_aminos(sequence){
   }
 }
 
+
 function CharCount(theString,theChar){
   var result = 0;
 
@@ -426,48 +427,21 @@ function add_signum(x) {
   else       { return x; }
 }
 
-
-function checkAA(aa) {
-  var validAAs="ACDEFGHIKLMNPQRSTVWY";
-  if (validAAs.indexOf(aa) >= 0){
-    return true;
-  } else {
-    return false;
-  }
-}
-
-
-function cleanSeq(x)
-{
-  var ctrl=document.getElementById(x);
-  seq=ctrl.value;
-
-  seq=seq.toUpperCase();
-
-  var newSeq="";
-  for (i = 0; i < seq.length; i++) {
-    if (checkAA(seq[i])){
-      newSeq=newSeq+seq[i];
-    }
-  }
-  if (newSeq.length > 60) newSeq = newSeq.substring(0,59);
-  seq=newSeq;
-  ctrl.value=seq;
-  if (seq)
-  {
-    updateProperties(seq);
-  }
-  else
-    clearProperties();
-  ctrl.focus();
-  }
-
 function updateProperties(seq) {
   count_aminos(seq);
+  console.log("Counting aminoacids: Done");
+
   calcmass(rescounts);
+  console.log("Calculating mass: Done");
+
   calcpi(rescounts, seq);
+  console.log("Calculating isoelectric point: Done");
+
   calcec(rescounts);
+  console.log("Calculating extinction coefficients: Done");
+
   calchphob(rescounts);
+  console.log("Calculating hidrophobicity: Done");
 
   document.getElementById('length').innerHTML = seq.length;
   document.getElementById('mass').innerHTML = mass;
