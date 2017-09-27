@@ -15,7 +15,7 @@ $('.submit-button').click(function() {
   else if (type == "Protein") {
     var before = new Date().getTime();
     var protein = translatePROT(sequence, mutate, frequency);
-    var duration = after-before;
+
     var letters = protein[0];
     var chain = protein[1];
     var three_letter = protein[2];
@@ -29,6 +29,7 @@ $('.submit-button').click(function() {
     ////////////////////////////
     updateProperties(letters);
     var after = new Date().getTime();
+    var duration = after-before;
     $('#time').text(duration+' miliseconds');
     }
 
