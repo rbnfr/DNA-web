@@ -1,5 +1,13 @@
 $('#generator').click(function(){
-  var sequence = createSequence(Math.floor((Math.random() * 1000) + 3));
+  var seq_length = $('#seq_length').val();
+
+  if (seq_length) {
+    var sequence = createSequence(seq_length);
+  }
+  else {
+    var sequence = createSequence(Math.floor((Math.random() * 1000) + 3));
+  }
+
   $('.sequence').val(sequence);
 });
 

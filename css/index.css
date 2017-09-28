@@ -1,11 +1,6 @@
-body, html{
-  padding : 0;
-  margin : 0;
-  width: 100%;
-  height: 100%;
-  max-width: 1920px;
-  align-content: center;
-}
+
+
+
 .toolbar{
   width : 100%;
   height: 50px;
@@ -36,8 +31,8 @@ body, html{
   height: auto;
   color : Black;
   font-weight: bold;
-
 }
+
 .toolbar-button{
   float: right;
   margin-top: 15px;
@@ -57,10 +52,4 @@ input[name="Sequence"] {
     height: auto;
     margin: 10px 5;
     box-sizing: border-box;
-}
-
-input[name=result]{
-  width: 100%;
-  height: auto;
-  box-sizing: border-box;
 }
