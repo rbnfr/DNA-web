@@ -53,3 +53,6 @@ input[name="Sequence"] {
     margin: 10px 5;
     box-sizing: border-box;
 }
+.results{
+  max-width: 1000px;
+}
