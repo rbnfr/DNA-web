@@ -47,12 +47,6 @@
   padding: 50px;
 }
 
-input[name="Sequence"] {
-    width: 100%;
-    height: auto;
-    margin: 10px 5;
-    box-sizing: border-box;
-}
 .results{
   max-width: 1000px;
 }
