@@ -1,5 +1,6 @@
 $(document).ready(function() {
-  $('.submit-button').click(function() {    
+  $('select').material_select();
+  $('.submit-button').click(function() {
     var sequence = document.forms["conversor"][1].value;
     var type = $('input[name="type"]:checked').val();
     var mutate = $('input[name="mutation"]:checked').val();
