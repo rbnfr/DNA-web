@@ -12,7 +12,7 @@ $(document).ready(function () {
 
     });
 
-    $('.submit-button').click(function () {
+    $('#submit-button').click(function () {
         var sequence = document.forms["conversor"][1].value;
         var type = $('select').val();
         var mutate = document.getElementById('mutation_switch').checked;
