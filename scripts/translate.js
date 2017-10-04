@@ -12,19 +12,24 @@ $(document).ready(function () {
 
     });
 
-    $('#submit-button').click(function () {
-        var sequence = document.forms["conversor"][1].value;
+    $('#submit-button').click(function () {         
+        var sequence = $('#seq-id').val();        
         var type = $('select').val();
         var mutate = document.getElementById('mutation_switch').checked;
         var frequency = $('input[name="freq"]').val();
+        
+        if (sequence == ""){
+            Materialize.toast('Insert sequence first!', 2000);
+            
+            }
 
         if (type == "RNA") {
             var before = new Date().getTime();
             var trans = translateRNA(sequence, mutate, frequency);
             var after = new Date().getTime();
             var duration = after - before;
-            $('.result1').val(trans);
-            $('.result1').trigger('autoresize');
+            
+            $('.result1').val(trans);            
             $('#time').text(duration + ' miliseconds');
         } else if (type == "Protein") {
             var before = new Date().getTime();
@@ -34,12 +39,12 @@ $(document).ready(function () {
             var chain = protein[1];
             var three_letter = protein[2];
 
-            $('.result1').val(letters);
-            $('.result1').trigger('autoresize');
-            $('.result2').val(chain);
-            $('.result2').trigger('autoresize');
-            $('.result3').val(three_letter);
-            $('.result3').trigger('autoresize');
+            $('#seq-id1').val(letters);
+            $('#seq-id1').trigger('autoresize');
+            $('#seq-id2').val(chain);
+            $('#seq-id2').trigger('autoresize');
+            $('#seq-id3').val(three_letter);
+            $('#seq-id3').trigger('autoresize');
 
             ////////////////////////////
             // PROPERTIES             //
@@ -75,8 +80,7 @@ $(document).ready(function () {
             'T': 'A',
             'C': 'G',
             'G': 'C'
-        }
-
+        }        
         var seq = sequence.toUpperCase().replace(/\s/g, '');
         var i;
         var trans = "";

@@ -38,7 +38,7 @@
                                     <legend>Input</legend>
                                     <div class="row">
                                         <div class="input-field col s12">
-                                            <textarea name="DNA sequence" id="seq-id" cols="30" rows="10" placeholder="DNA sequence"></textarea>
+                                            <textarea name="DNA sequence" id="seq-id" cols="30" rows="10" placeholder="DNA sequence" class="materialize-textarea"></textarea>
                                             <label for="DNA sequence"></label>
                                             <a class="waves-effect waves btn blue" id="generator" name="generator">Generate sequence</a>
                                             <a class="waves-effect waves btn blue" id="cleaner" name="cleaner">Clear</a><br> Length:
@@ -89,11 +89,11 @@
                                 <legend>Results</legend>
                                 <div class="row">
                                     One-Letter chain:<br>
-                                    <textarea id="seq-id" class="result1" name="result" rows="5" cols="150" readonly></textarea><br> 
+                                    <textarea id="seq-id1" name="result" rows="5" cols="150" class="materialize-textarea" readonly></textarea><br> 
                                     Three letter chain:<br>
-                                    <textarea id="seq-id3" class="result3" name="result" rows="5" cols="150" readonly></textarea><br> 
+                                    <textarea id="seq-id3" name="result" rows="5" cols="150" class="materialize-textarea" readonly></textarea><br> 
                                     Complete name chain:<br>
-                                    <textarea id="seq-id2" class="result2" name="result" rows="5" cols="150" readonly></textarea><br>
+                                    <textarea id="seq-id2" name="result" rows="5" cols="150" class="materialize-textarea" readonly></textarea><br>
                                 </div>
                             </fieldset>
                         </div>
@@ -101,114 +101,60 @@
                         <div class="col s4">
                             <fieldset>
                                 <legend>Protein estimated properties</legend>
-                                <table id="properties" style="float:left">
+                                <table id="properties" class="highlight">
                                   <thead>
                                      <th>Property</th>
-                                     <th>value</th>
-                                      
+                                     <th>value</th>                                      
                                   </thead>
-                                   <tbody>
-                                    <tr>
-                                        <th>Length:</th>
-                                        <td id="length" style="text-align:left"></td>
-                                    </tr>
+                                   
+                                    <tbody>
+                                        <tr>
+                                            <th>Length:</th>
+                                            <td id="length"></td>
+                                        </tr>
 
-                                    <tr>
-                                        <th>Mass:</th>
-                                        <td id="mass" style="text-align:left"></td>
-                                    </tr>
+                                        <tr>
+                                            <th>Mass:</th>
+                                            <td id="mass"></td>
+                                        </tr>
 
-                                    <tr>
-                                        <th>Isoelectric point (pI):</th>
-                                        <td id="pI" style="text-align:left"></td>
-                                    </tr>
+                                        <tr>
+                                            <th>Isoelectric point (pI):</th>
+                                            <td id="pI"></td>
+                                        </tr>
 
-                                    <tr>
-                                        <th>Net charge:</th>
-                                        <td id="charge" style="text-align:left"></td>
-                                    </tr>
+                                        <tr>
+                                            <th>Net charge:</th>
+                                            <td id="charge"></td>
+                                        </tr>
 
-                                    <tr>
-                                        <th>Hydrophobicity:</th>
-                                        <td id="hydrophobicity" style="text-align:left"></td>
-                                    </tr>
+                                        <tr>
+                                            <th>Hydrophobicity:</th>
+                                            <td id="hydrophobicity"></td>
+                                        </tr>
 
-                                    <tr>
-                                        <th>Extinction coefficient 1:</th>
-                                        <td id="extinction1" style="text-align:left"></td>
-                                    </tr>
+                                        <tr>
+                                            <th>Extinction coefficient 1:</th>
+                                            <td id="extinction1"></td>
+                                        </tr>
 
-                                    <tr>
-                                        <th>Extinction coefficient 2:</th>
-                                        <td id="extinction2" style="text-align:left"></td>
-                                    </tr>
+                                        <tr>
+                                            <th>Extinction coefficient 2:</th>
+                                            <td id="extinction2"></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </fieldset>
                         </div>
-
-                    </div>       
-
+                    </div>
                     </form>
-                </div>
-                <form class="conversor-form" id="conversor" method="post">
-                    <fieldset>
-                        <legend>Protein estimated properties</legend>
-                        <table id="properties" style="float:left">
-                            <tr>
-                                <th style="text-align:left">Length:</th>
-                                <td id="length" style="text-align:left"></td>
-                            </tr>
-
-                            <tr>
-                                <th style="text-align:left">Mass:</th>
-                                <td id="mass" style="text-align:left"></td>
-                            </tr>
-
-                            <tr>
-                                <th style="text-align:left">Isoelectric point (pI):</th>
-                                <td id="pI" style="text-align:left"></td>
-                            </tr>
-
-                            <tr>
-                                <th style="text-align:left">Net charge:</th>
-                                <td id="charge" style="text-align:left"></td>
-                            </tr>
-
-                            <tr>
-                                <th style="text-align:left">Hydrophobicity:</th>
-                                <td id="hydrophobicity" style="text-align:left"></td>
-                            </tr>
-
-                            <tr>
-                                <th style="text-align:left">Extinction coefficient 1:</th>
-                                <td id="extinction1" style="text-align:left"></td>
-                            </tr>
-
-                            <tr>
-                                <th style="text-align:left">Extinction coefficient 2:</th>
-                                <td id="extinction2" style="text-align:left"></td>
-                            </tr>
-                        </table>
-                    </fieldset>
-
-                    <fieldset>
-                        <legend>Time elapsed</legend>
-                        <p id="time"></p>
-                    </fieldset>
-
-                </form>
-
+                </div>                
             </div>
             <!-- Conversor -->
-
         </div>
         <!-- Section -->
-
         </div>
         <!-- Sections -->
-    
-    <!-- Container -->
 </body>
 
 <script src="/scripts/translate.js" type="text/javascript"></script>

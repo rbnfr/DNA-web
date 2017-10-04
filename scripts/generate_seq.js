@@ -1,12 +1,17 @@
 $('#cleaner').click(function () {
     $('#seq-id').val("");
     $('#seq-id').trigger('autoresize');
+    $('#seq-id1').val("");
+    $('#seq-id2').val("");
+    $('#seq-id3').val("");
 });
 
 
 $('#generator').click(function () {
     var seq_length = $('#seq_length').val();
-
+    $('#seq-id1').val("");
+    $('#seq-id2').val("");
+    $('#seq-id3').val("");
     if (seq_length) {
         var sequence = createSequence(seq_length);
     } else {
