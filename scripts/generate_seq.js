@@ -3,17 +3,21 @@ $('#cleaner').click(function () {
     $('#seq-id1').val("");
     $('#seq-id2').val("");
     $('#seq-id3').val("");
-    $('textarea').trigger('autoresize');   
+    $('#seq_length').val("");
+    $('p#length-meter').text("");
+    $('textarea').trigger('autoresize');
+    
     cleaner();
     
 });
 
 
-$('#generator').click(function () {
+$('#generator').click(function () {    
     var seq_length = $('#seq_length').val();
     $('#seq-id1').val("");
     $('#seq-id2').val("");
     $('#seq-id3').val("");
+    
     if (seq_length) {
         var sequence = createSequence(seq_length);
     } else {
@@ -21,6 +25,7 @@ $('#generator').click(function () {
     }
     $('#seq-id').val(sequence);
     $('#seq-id').trigger('autoresize');
+    $('p#length-meter').text("Length: " + sequence.length);
 });
 
 function createSequence(size) {
