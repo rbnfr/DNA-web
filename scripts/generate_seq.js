@@ -1,9 +1,11 @@
 $('#cleaner').click(function () {
-    $('#seq-id').val("");
-    $('#seq-id').trigger('autoresize');
+    $('#seq-id').val("");    
     $('#seq-id1').val("");
     $('#seq-id2').val("");
     $('#seq-id3').val("");
+    $('textarea').trigger('autoresize');   
+    cleaner();
+    
 });
 
 
@@ -32,4 +34,14 @@ function createSequence(size) {
 function getRandomChar() {
     var chars = ["A", "T", "C", "G"];
     return chars[Math.floor((Math.random() * chars.length))];
+}
+
+function cleaner() {
+    document.getElementById('length').innerHTML = "";
+    document.getElementById('mass').innerHTML = "";
+    document.getElementById('pI').innerHTML = "";
+    document.getElementById('charge').innerHTML = "";
+    document.getElementById('hydrophobicity').innerHTML = "";
+    document.getElementById('extinction1').innerHTML = "";
+    document.getElementById('extinction2').innerHTML = "";
 }

@@ -19,8 +19,7 @@ $(document).ready(function () {
         var frequency = $('input[name="freq"]').val();
         
         if (sequence == ""){
-            Materialize.toast('Insert sequence first!', 2000);
-            
+            Materialize.toast('Insert sequence first!', 2000);            
             }
 
         if (type == "RNA") {
@@ -29,7 +28,7 @@ $(document).ready(function () {
             var after = new Date().getTime();
             var duration = after - before;
             
-            $('.result1').val(trans);            
+            $('#seq-id1').val(trans);            
             $('#time').text(duration + ' miliseconds');
         } else if (type == "Protein") {
             var before = new Date().getTime();
@@ -74,7 +73,7 @@ $(document).ready(function () {
     // return seq;
     // }
 
-    function translateRNA(sequence, mutate, frequency) {
+    function translateRNA(sequence, mutate, frequency) {        
         var translation = {
             'A': 'U',
             'T': 'A',
@@ -97,7 +96,7 @@ $(document).ready(function () {
         }
 
 
-        if (mutate == 'true' && frequency && 0 != frequency) {
+        if (mutate == true && frequency && 0 != frequency) {
             var chars = ["A", "U", "C", "G"];
             var freq_per = 100 / frequency;
             var freq = (Math.floor(Math.random() * freq_per));
@@ -105,12 +104,11 @@ $(document).ready(function () {
             for (var i = 0; i < sequence.length; i = i + (Math.floor(Math.random() * freq)) + 1) {
                 var char = chars[Math.floor((Math.random() * chars.length))];
                 trans = trans.replaceAt(i, char);
-            }
-
-            return trans;
+            }            
+            return trans;            
 
             // return mutate(seq, frequency);
-        } else {
+        } else {            
             return trans;
         }
 
@@ -141,7 +139,7 @@ $(document).ready(function () {
         var sequence = sequence.toUpperCase().replace(/\s/g, '');
         $('#seq-id').val(sequence);
 
-        if (mutate == "true" && frequency && 0 != frequency) {
+        if (mutate == true && frequency && 0 != frequency) {
             var chars = ["A", "T", "C", "G"];
             var freq_per = 100 / frequency;
             var freq = (Math.floor(Math.random() * freq_per));
