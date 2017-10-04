@@ -1,9 +1,12 @@
 $(document).ready(function() {
   $('select').material_select();
+
   $('.submit-button').click(function() {
     var sequence = document.forms["conversor"][1].value;
-    var type = $('input[name="type"]:checked').val();
-    var mutate = $('input[name="mutation"]:checked').val();
+    var type = $('select').val();
+    // var mutate = $('input[name="mutation"]:checked').val();
+    var mutate = document.getElementById('mutation_switch').checked;
+    alert(mutate);
     var frequency = $('input[name="freq"]').val();
 
     if (type == "RNA") {
@@ -37,6 +40,9 @@ $(document).ready(function() {
       var after = new Date().getTime();
       var duration = after-before;
       $('#time').text(duration+' miliseconds');
+      }
+      else {
+        Materialize.toast('Select a translation type!',2000);
       }
 
   });
