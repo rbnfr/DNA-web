@@ -1,5 +1,7 @@
-
-
+.sections{
+    color: white;
+    background-color:black;
+}
 
 .toolbar{
   width : 100%;
@@ -48,18 +50,14 @@
 }
 
 .results{
-  max-width: 1000px;
-}
-
-fieldset {
-    
-}
-
-.autocomplete-content li .highlight {
-  color: wheat;
-    background-color: aqua;
+  max-height: 1000px;
 }
 
 table.highlight>tbody>tr:hover {
-    background-color: #ffd86b;
+    background-color: blue;
+}
+
+.textarea{
+    resize: vertical; 
+    max-height: 200px;
 }
