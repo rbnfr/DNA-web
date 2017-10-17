@@ -1,7 +1,7 @@
-.sections{
+/* .sections{
     color: white;
     background-color:black;
-}
+} */
 
 .toolbar{
   width : 100%;
@@ -50,14 +50,24 @@
 }
 
 .results{
-  max-height: 1000px;
+  max-height: 1000px;    
 }
 
 table.highlight>tbody>tr:hover {
-    background-color: blue;
+    background-color: cornflowerblue;
 }
 
 .textarea{
     resize: vertical; 
     max-height: 200px;
+    padding: 5px;
+}
+
+legend{
+  padding: 5px;
+}
+
+#titles{
+    padding: 10px;
+    text-decoration: underline;
 }

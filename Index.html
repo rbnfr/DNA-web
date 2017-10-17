@@ -6,9 +6,12 @@
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection" />
     <!-- Import noUiSlider -->
     <link type="text/css" rel="stylesheet" href="css/nouislider.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/bulma.css">
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -91,11 +94,11 @@
                             <fieldset>
                                 <legend>Results</legend>
                                 <div class="row">
-                                    One-Letter chain:<br>
+                                    <p id="titles">One-Letter chain:<br></p>
                                     <textarea id="seq-id1" name="result" rows="5" cols="150" class="materialize-textarea" readonly></textarea><br> 
-                                    Three letter chain:<br>
+                                    <p id="titles">Three letter chain:<br></p>
                                     <textarea id="seq-id3" name="result" rows="5" cols="150" class="materialize-textarea" readonly></textarea><br> 
-                                    Complete name chain:<br>
+                                    <p id="titles">Complete name chain:<br></p>
                                     <textarea id="seq-id2" name="result" rows="5" cols="150" class="materialize-textarea" readonly></textarea><br>
                                 </div>
                             </fieldset>

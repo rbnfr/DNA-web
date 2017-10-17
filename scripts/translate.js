@@ -3,6 +3,7 @@ $(document).ready(function () {
     $('#mutation_switch').change(function () {
         var mut = document.getElementById('mutation_switch').checked;
         
+        
         if (mut == true) {
             $('#freq').removeAttr('disabled');
             
