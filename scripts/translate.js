@@ -79,7 +79,7 @@ $(document).ready(function () {
             'T': 'A',
             'C': 'G',
             'G': 'C'
-        };        
+        }        
         var seq = sequence.toUpperCase().replace(/\s/g, '');
         var i;
         var trans = "";
