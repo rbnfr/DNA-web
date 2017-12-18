@@ -15,146 +15,154 @@
 </head>
 
 <body>
-    
 
 
-        <nav class="orange">
-            <div class="nav-wrapper">
-                <a href="#!" class="brand-logo"><i class="large material-icons">code</i>DNA Web</a>
-                <!-- <a href="Index.html"><img class="responsive-img" height="auto" src="img/dna.png" class="brand-logo">DNA Web</a> -->
-                <!-- <a href="Index.html" class="toolbar-title">DNA-Web</a> -->
-            </div>
-        </nav>
-        <div class="sections">
-            <div class="section">
-                <div class="conversor">
-                    <div class="row">
-                        <form class="col s12">
-                            <div class="col s8">
-                                <fieldset>
-                                    <legend>Input</legend>
-                                    <div class="row">
-                                        <div class="input-field col s12">
-                                            <textarea name="DNA sequence" id="seq-id" cols="30" rows="10" placeholder="DNA sequence" class="materialize-textarea"></textarea>
-                                            <p id="length-meter">
-                                                
-                                            </p><br>
-                                            <label for="DNA sequence"></label>
-                                            <a class="waves-effect waves btn blue" id="generator" name="generator">Generate sequence</a>
-                                            <a class="waves-effect waves btn blue" id="cleaner" name="cleaner">Clear</a><br> Custom length:
-                                            <div class="input-field inline">
-                                                <input id="seq_length" type="text" name="seq_length">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </div>
-                            <div class="col s4">
 
-                                <fieldset>
-                                    <legend>Options</legend>
-                                    <div class="row">
-                                        <div class="col s6">
-                                            <select name="conversion_type" id="conversion_type">
-                                                <option value="handler" disabled selected>Translate type</option>
-                                                <option value="RNA" data-icon="/img/uracil.png" class="left circle">RNA</option>
-                                                <option value="Protein" data-icon="/img/protein.png" class="left circle">Protein</option>
-                                            </select>
-                                            <label for="conversion_type">Select translation type</label> 
-                                            Mutations:
-                                            <div class="switch">
-                                               <label>
-                                                Off
-                                                   <input type="checkbox" id="mutation_switch">
-                                                   <span class="lever"></span>
-                                                On
-                                                </label>
-                                            </div>
-                                            <div class="input-field">
-                                                <input id="freq" type="text" name="freq" pattern="[0-9]" placeholder="%" disabled><br>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <a class="waves-effect btn orange" id="submit-button">Translate</a>
-                                        </div>
-                                    </div>
-                                </fieldset>    
-                            </div>
-
+    <nav class="orange">
+        <div class="nav-wrapper">
+            <a href="#!" class="brand-logo">
+                <i class="large material-icons">code</i>DNA Web</a>
+            <!-- <a href="Index.html"><img class="responsive-img" height="auto" src="img/dna.png" class="brand-logo">DNA Web</a> -->
+            <!-- <a href="Index.html" class="toolbar-title">DNA-Web</a> -->
+        </div>
+    </nav>
+    <div class="sections">
+        <div class="section">
+            <div class="conversor">
                 <div class="row">
+                    <form class="col s12">
                         <div class="col s8">
                             <fieldset>
-                                <legend>Results</legend>
+                                <legend>Input</legend>
                                 <div class="row">
-                                    One-Letter chain:<br>
-                                    <textarea id="seq-id1" name="result" rows="5" cols="150" class="materialize-textarea" readonly></textarea><br> 
-                                    Three letter chain:<br>
-                                    <textarea id="seq-id3" name="result" rows="5" cols="150" class="materialize-textarea" readonly></textarea><br> 
-                                    Complete name chain:<br>
-                                    <textarea id="seq-id2" name="result" rows="5" cols="150" class="materialize-textarea" readonly></textarea><br>
+                                    <div class="input-field col s12">
+                                        <textarea name="DNA sequence" id="seq-id" cols="30" rows="10" placeholder="DNA sequence" class="materialize-textarea"></textarea>
+                                        <p id="length-meter">
+
+                                        </p>
+                                        <br>
+                                        <label for="DNA sequence"></label>
+                                        <a class="waves-effect waves btn blue" id="generator" name="generator">Generate sequence</a>
+                                        <a class="waves-effect waves btn blue" id="cleaner" name="cleaner">Clear</a>
+                                        <br> Custom length:
+                                        <div class="input-field inline">
+                                            <input id="seq_length" type="text" name="seq_length">
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col s4">
+
+                            <fieldset>
+                                <legend>Options</legend>
+                                <div class="row">
+                                    <div class="col s6">
+                                        <select name="conversion_type" id="conversion_type">
+                                            <option value="handler" disabled selected>Translate type</option>
+                                            <option value="RNA" data-icon="/img/uracil.png" class="left circle">RNA</option>
+                                            <option value="Protein" data-icon="/img/protein.png" class="left circle">Protein</option>
+                                        </select>
+                                        <label for="conversion_type">Select translation type</label>
+                                        Mutations:
+                                        <div class="switch">
+                                            <label>
+                                                Off
+                                                <input type="checkbox" id="mutation_switch">
+                                                <span class="lever"></span>
+                                                On
+                                            </label>
+                                        </div>
+                                        <div class="input-field">
+                                            <input id="freq" type="text" name="freq" pattern="[0-9]" placeholder="%" disabled>
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <a class="waves-effect btn orange" id="submit-button">Translate</a>
+                                    </div>
                                 </div>
                             </fieldset>
                         </div>
 
-                        <div class="col s4">
-                            <fieldset>
-                                <legend>Protein estimated properties</legend>
-                                <table id="properties" class="highlight">
-                                  <thead>
-                                     <th>Property</th>
-                                     <th>value</th>                                      
-                                  </thead>
-                                   
-                                    <tbody>
-                                        <tr>
-                                            <th>Length:</th>
-                                            <td id="length"></td>
-                                        </tr>
+                        <div class="row">
+                            <div class="col s8">
+                                <fieldset>
+                                    <legend>Results</legend>
+                                    <div class="row">
+                                        One-Letter chain:
+                                        <br>
+                                        <textarea id="seq-id1" name="result" rows="5" cols="150" class="materialize-textarea" readonly></textarea>
+                                        <br> Three letter chain:
+                                        <br>
+                                        <textarea id="seq-id3" name="result" rows="5" cols="150" class="materialize-textarea" readonly></textarea>
+                                        <br> Complete name chain:
+                                        <br>
+                                        <textarea id="seq-id2" name="result" rows="5" cols="150" class="materialize-textarea" readonly></textarea>
+                                        <br>
+                                    </div>
+                                </fieldset>
+                            </div>
 
-                                        <tr>
-                                            <th>Mass:</th>
-                                            <td id="mass"></td>
-                                        </tr>
+                            <div class="col s4">
+                                <fieldset>
+                                    <legend>Protein estimated properties</legend>
+                                    <table id="properties" class="highlight">
+                                        <thead>
+                                            <th>Property</th>
+                                            <th>value</th>
+                                        </thead>
 
-                                        <tr>
-                                            <th>Isoelectric point (pI):</th>
-                                            <td id="pI"></td>
-                                        </tr>
+                                        <tbody>
+                                            <tr>
+                                                <th>Length:</th>
+                                                <td id="length"></td>
+                                            </tr>
 
-                                        <tr>
-                                            <th>Net charge:</th>
-                                            <td id="charge"></td>
-                                        </tr>
+                                            <tr>
+                                                <th>Mass:</th>
+                                                <td id="mass"></td>
+                                            </tr>
 
-                                        <tr>
-                                            <th>Hydrophobicity:</th>
-                                            <td id="hydrophobicity"></td>
-                                        </tr>
+                                            <tr>
+                                                <th>Isoelectric point (pI):</th>
+                                                <td id="pI"></td>
+                                            </tr>
 
-                                        <tr>
-                                            <th>Extinction coefficient 1:</th>
-                                            <td id="extinction1"></td>
-                                        </tr>
+                                            <tr>
+                                                <th>Net charge:</th>
+                                                <td id="charge"></td>
+                                            </tr>
 
-                                        <tr>
-                                            <th>Extinction coefficient 2:</th>
-                                            <td id="extinction2"></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </fieldset>
+                                            <tr>
+                                                <th>Hydrophobicity:</th>
+                                                <td id="hydrophobicity"></td>
+                                            </tr>
+
+                                            <tr>
+                                                <th>Extinction coefficient 1:</th>
+                                                <td id="extinction1"></td>
+                                            </tr>
+
+                                            <tr>
+                                                <th>Extinction coefficient 2:</th>
+                                                <td id="extinction2"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </fieldset>
+                            </div>
                         </div>
-                    </div>
                     </form>
-                </div>                
+                </div>
             </div>
             <!-- Conversor -->
         </div>
         <!-- Section -->
-        </div>
-        <!-- Sections -->
+    </div>
+    <!-- Sections -->
 </body>
 
 <script src="/scripts/translate.js" type="text/javascript"></script>
