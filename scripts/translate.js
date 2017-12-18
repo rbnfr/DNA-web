@@ -89,47 +89,37 @@ $(document).ready(function () {
             var char = seq.substring(i, i + 1);
             if (translation[char] === undefined) {
                 alert("Unrecognized base at position " + i + " : " + char);
+                console.log("Unrecognized base at position " + i + " : " + char);
             } else {
                 trans += translation[char];
             }
 
         }
 
-
         if (mutate == true && frequency && 0 != frequency) {
-            var chars = ["A", "U", "C", "G"];
-            var freq_per = 100 / frequency;
-            var freq = (Math.floor(Math.random() * freq_per));
-
-            for (var i = 0; i < sequence.length; i = i + (Math.floor(Math.random() * freq)) + 1) {
-                var char = chars[Math.floor((Math.random() * chars.length))];
-                trans = trans.replaceAt(i, char);
-            }            
-            return trans;            
-
-            // return mutate(seq, frequency);
+            return mutateChain(trans, frequency);
         } else {            
             return trans;
         }
 
     }
 
-    // function mutate(sequence, frequency){
-    //   var chars = ["A","U","C","G"];
-    //   var freq_per = 100/frequency;
-    //   var freq =(Math.floor(Math.random()*freq_per));
-    //
-    //   for (var i = 0; i < sequence.length; i = i + (Math.floor(Math.random()*freq))+1 ) {
-    //     var char = chars[Math.floor((Math.random() * chars.length))];
-    //     sequence=sequence.replaceAt(i, char);
-    //   }
-    //
-    //   return sequence;
-    // }
+    function mutateChain(sequence, frequency) {
+        var chars = ["A", "U", "C", "G"];
+        var freq_per = 100 / frequency;
+        var freq = (Math.floor(Math.random() * freq_per));
+
+        // The freq var will be the number of characters we skip before add a mutation, so the higer the freq_per and freq values, the lower the chance of mutation.
+        for (var i = 0; i < sequence.length; i = i + (Math.floor(Math.random() * freq)) + 1) {
+            var char = chars[Math.floor((Math.random() * chars.length))];
+            sequence = sequence.replaceAt(i, char);
+        }
+        return sequence;
+    }
 
     String.prototype.replaceAt = function (index, replacement) {
         return this.substr(0, index) + replacement + this.substr(index + replacement.length);
-    }
+    };
 
     function translatePROT(sequence, mutate, frequency) {
         var protein = "";
