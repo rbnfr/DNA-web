@@ -1,5 +1,7 @@
-
-
+.sections{
+    color: black;
+    background-color:white;
+}
 
 .toolbar{
   width : 100%;
@@ -47,12 +49,15 @@
   padding: 50px;
 }
 
-input[name="Sequence"] {
-    width: 100%;
-    height: auto;
-    margin: 10px 5;
-    box-sizing: border-box;
-}
 .results{
-  max-width: 1000px;
+  max-height: 1000px;
+}
+
+table.highlight>tbody>tr:hover {
+    background-color: rgb(253, 204, 99);
+}
+
+.textarea{
+    resize: vertical; 
+    max-height: 200px;
 }
