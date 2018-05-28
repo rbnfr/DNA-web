@@ -23,9 +23,9 @@ $('#generator').click(function () {
     } else {
         var sequence = createSequence(Math.floor((Math.random() * 1000) + 3));
     }
-    $('#seq-id').val(sequence);
+    $('#seq-id').val(this.sequence);
     $('#seq-id').trigger('autoresize');
-    $('p#length-meter').text("Length: " + sequence.length);
+    $('p#length-meter').text("Length: " + this.sequence.length);
 });
 
 function createSequence(size) {
