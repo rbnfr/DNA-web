@@ -1,23 +1,23 @@
 $('#cleaner').click(function () {
-    $('#seq-id').val("");    
+    $('#seq-id').val("");
     $('#seq-id1').val("");
     $('#seq-id2').val("");
     $('#seq-id3').val("");
     $('#seq_length').val("");
     $('p#length-meter').text("");
     $('textarea').trigger('autoresize');
-    
+
     cleaner();
-    
+
 });
 
 
-$('#generator').click(function () {    
+$('#generator').click(function () {
     var seq_length = $('#seq_length').val();
     $('#seq-id1').val("");
     $('#seq-id2').val("");
     $('#seq-id3').val("");
-    
+
     if (seq_length) {
         var sequence = createSequence(seq_length);
     } else {

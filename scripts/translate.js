@@ -2,24 +2,24 @@ $(document).ready(function () {
     $('select').material_select();
     $('#mutation_switch').change(function () {
         var mut = document.getElementById('mutation_switch').checked;
-        
+
         if (mut == true) {
             $('#freq').removeAttr('disabled');
-            
+
         } else if (mut == false) {
             $('#freq').attr('disabled', true);
         }
 
     });
 
-    $('#submit-button').click(function () {         
-        var sequence = $('#seq-id').val();        
+    $('#submit-button').click(function () {
+        var sequence = $('#seq-id').val();
         var type = $('select').val();
         var mutate = document.getElementById('mutation_switch').checked;
         var frequency = $('input[name="freq"]').val();
-        
+
         if (sequence == ""){
-            Materialize.toast('Insert sequence first!', 2000);            
+            Materialize.toast('Insert sequence first!', 2000);
             }
 
         if (type == "RNA") {
@@ -27,8 +27,8 @@ $(document).ready(function () {
             var trans = translateRNA(sequence, mutate, frequency);
             var after = new Date().getTime();
             var duration = after - before;
-            
-            $('#seq-id1').val(trans);            
+
+            $('#seq-id1').val(trans);
             $('#time').text(duration + ' miliseconds');
         } else if (type == "Protein") {
             var before = new Date().getTime();
@@ -73,13 +73,13 @@ $(document).ready(function () {
     // return seq;
     // }
 
-    function translateRNA(sequence, mutate, frequency) {        
+    function translateRNA(sequence, mutate, frequency) {
         var translation = {
             'A': 'U',
             'T': 'A',
             'C': 'G',
             'G': 'C'
-        };   
+        };
         var seq = sequence.toUpperCase().replace(/\s/g, '');
         var i;
         var trans = "";
@@ -98,7 +98,7 @@ $(document).ready(function () {
 
         if (mutate == true && frequency && 0 != frequency) {
             return mutateChain(trans, frequency);
-        } else {            
+        } else {
             return trans;
         }
 

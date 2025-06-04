@@ -9,7 +9,7 @@ DNA conversion web interface.
 
 ## Running the app
 
-Run the bundled Python server and open the page it serves. This single command 
+Run the bundled Python server and open the page it serves. This single command
 hosts the static files **and** the API, so you don't need to run any other web
 server. If port `8000` is taken you can pass a different port number or set
 `PORT`:
