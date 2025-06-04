@@ -9,10 +9,18 @@ DNA conversion web interface.
 
 ## Running the app
 
-Run the bundled Python server and open the page it serves:
+Run the bundled Python server and open the page it serves. This single command 
+hosts the static files **and** the API, so you don't need to run any other web
+server. If port `8000` is taken you can pass a different port number or set
+`PORT`:
 
 ```bash
+# default port 8000
 python3 server.py
+
+# or choose a port
+python3 server.py 8080
+# or PORT=8080 python3 server.py
 ```
 
-Then browse to [http://localhost:8000/Index.html](http://localhost:8000/Index.html).
+Then browse to `http://localhost:<port>/Index.html` using the same port number.

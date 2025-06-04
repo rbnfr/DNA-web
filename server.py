@@ -1,5 +1,7 @@
 import json
+import os
 import random
+import sys
 from http.server import SimpleHTTPRequestHandler, HTTPServer
 
 AMINOS = {
@@ -184,5 +186,9 @@ def run(server_class=HTTPServer, handler_class=Handler, port=8000):
     print(f'Serving on port {port}')
     httpd.serve_forever()
 
+
 if __name__ == '__main__':
-    run()
+    env_port = os.environ.get('PORT')
+    arg_port = int(sys.argv[1]) if len(sys.argv) > 1 else None
+    port = int(env_port or arg_port or 8000)
+    run(port=port)
