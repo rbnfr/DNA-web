@@ -1,6 +1,6 @@
 import json
 import random
-from http.server import BaseHTTPRequestHandler, HTTPServer
+from http.server import SimpleHTTPRequestHandler, HTTPServer
 
 AMINOS = {
     'A': {'3letter': 'Ala', 'sc_mass': 15.0234, 'pk1': 2.35, 'pk2': 9.87, 'sc_hphob': 0.5},
@@ -145,7 +145,7 @@ def calc_properties(sequence):
         'hydrophobicity': hydrophobicity,
     }
 
-class Handler(BaseHTTPRequestHandler):
+class Handler(SimpleHTTPRequestHandler):
     def _set_headers(self):
         self.send_header('Content-Type', 'application/json')
         self.end_headers()
