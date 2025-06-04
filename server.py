@@ -337,8 +337,27 @@ def calc_properties(sequence):
 
 class Handler(SimpleHTTPRequestHandler):
     def do_GET(self):
-        # Serve static files
-        super().do_GET()
+        # Manejar peticiones API
+        if self.path.startswith("/api/"):
+            self.send_response(405)  # Method Not Allowed for GET on API
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            self.wfile.write(b'{"error": "Method not allowed"}')
+            return
+
+        # Servir archivo index.html por defecto
+        if self.path == "/" or self.path == "":
+            self.path = "/Index.html"
+
+        # Usar el método padre correctamente
+        try:
+            return super().do_GET()
+        except Exception as e:
+            print(f"Error serving file {self.path}: {e}")
+            self.send_response(404)
+            self.send_header("Content-Type", "text/html")
+            self.end_headers()
+            self.wfile.write(b"<h1>404 Not Found</h1>")
 
     def do_POST(self):
         if self.path != "/api/translate":
