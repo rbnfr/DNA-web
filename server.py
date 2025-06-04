@@ -7,6 +7,7 @@ from http.server import HTTPServer, SimpleHTTPRequestHandler
 AMINOS = {
     "A": {
         "3letter": "Ala",
+        "fullname": "Alanine",
         "sc_mass": 15.0234,
         "pk1": 2.35,
         "pk2": 9.87,
@@ -14,6 +15,7 @@ AMINOS = {
     },
     "R": {
         "3letter": "Arg",
+        "fullname": "Arginine",
         "sc_mass": 100.0873,
         "pk1": 1.82,
         "pk2": 8.99,
@@ -22,6 +24,7 @@ AMINOS = {
     },
     "N": {
         "3letter": "Asn",
+        "fullname": "Asparagine",
         "sc_mass": 58.0292,
         "pk1": 2.14,
         "pk2": 8.72,
@@ -29,6 +32,7 @@ AMINOS = {
     },
     "D": {
         "3letter": "Asp",
+        "fullname": "Aspartic_Acid",
         "sc_mass": 59.0132,
         "pk1": 1.99,
         "pk2": 9.9,
@@ -37,6 +41,7 @@ AMINOS = {
     },
     "C": {
         "3letter": "Cys",
+        "fullname": "Cysteine",
         "sc_mass": 46.9955,
         "pk1": 1.92,
         "pk2": 10.7,
@@ -46,6 +51,7 @@ AMINOS = {
     },
     "Q": {
         "3letter": "Gln",
+        "fullname": "Glutamine",
         "sc_mass": 72.0448,
         "pk1": 2.17,
         "pk2": 9.13,
@@ -53,6 +59,7 @@ AMINOS = {
     },
     "E": {
         "3letter": "Glu",
+        "fullname": "Glutamic_Acid",
         "sc_mass": 73.0288,
         "pk1": 2.1,
         "pk2": 9.47,
@@ -61,6 +68,7 @@ AMINOS = {
     },
     "G": {
         "3letter": "Gly",
+        "fullname": "Glycine",
         "sc_mass": 1.0078,
         "pk1": 2.35,
         "pk2": 9.78,
@@ -68,6 +76,7 @@ AMINOS = {
     },
     "H": {
         "3letter": "His",
+        "fullname": "Histidine",
         "sc_mass": 81.0452,
         "pk1": 1.8,
         "pk2": 9.33,
@@ -76,6 +85,7 @@ AMINOS = {
     },
     "I": {
         "3letter": "Ile",
+        "fullname": "Isoleucine",
         "sc_mass": 57.0702,
         "pk1": 2.32,
         "pk2": 9.76,
@@ -83,6 +93,7 @@ AMINOS = {
     },
     "L": {
         "3letter": "Leu",
+        "fullname": "Leucine",
         "sc_mass": 57.0702,
         "pk1": 2.33,
         "pk2": 9.74,
@@ -90,6 +101,7 @@ AMINOS = {
     },
     "K": {
         "3letter": "Lys",
+        "fullname": "Lysine",
         "sc_mass": 72.0811,
         "pk1": 2.16,
         "pk2": 9.06,
@@ -98,6 +110,7 @@ AMINOS = {
     },
     "M": {
         "3letter": "Met",
+        "fullname": "Methionine",
         "sc_mass": 75.0267,
         "pk1": 2.13,
         "pk2": 9.28,
@@ -105,6 +118,7 @@ AMINOS = {
     },
     "F": {
         "3letter": "Phe",
+        "fullname": "Phenylalanine",
         "sc_mass": 91.0546,
         "pk1": 2.2,
         "pk2": 9.31,
@@ -112,6 +126,7 @@ AMINOS = {
     },
     "P": {
         "3letter": "Pro",
+        "fullname": "Proline",
         "sc_mass": 41.039,
         "pk1": 1.95,
         "pk2": 10.64,
@@ -119,6 +134,7 @@ AMINOS = {
     },
     "S": {
         "3letter": "Ser",
+        "fullname": "Serine",
         "sc_mass": 31.0183,
         "pk1": 2.19,
         "pk2": 9.21,
@@ -126,6 +142,7 @@ AMINOS = {
     },
     "T": {
         "3letter": "Thr",
+        "fullname": "Threonine",
         "sc_mass": 45.0339,
         "pk1": 2.09,
         "pk2": 9.1,
@@ -133,6 +150,7 @@ AMINOS = {
     },
     "W": {
         "3letter": "Trp",
+        "fullname": "Tryptophan",
         "sc_mass": 130.0655,
         "pk1": 2.46,
         "pk2": 9.41,
@@ -141,6 +159,7 @@ AMINOS = {
     },
     "Y": {
         "3letter": "Tyr",
+        "fullname": "Tyrosine",
         "sc_mass": 107.0495,
         "pk1": 2.2,
         "pk2": 9.21,
@@ -150,6 +169,7 @@ AMINOS = {
     },
     "V": {
         "3letter": "Val",
+        "fullname": "Valine",
         "sc_mass": 43.0546,
         "pk1": 2.39,
         "pk2": 9.74,
@@ -257,7 +277,7 @@ def translate_protein(seq):
                 three.append("STOP")
             else:
                 info = AMINOS[aa]
-                names.append(info["3letter"])
+                names.append(info["fullname"])  # Usar nombre completo
                 three.append(info["3letter"])
         else:
             # unknown codon, stop translation
