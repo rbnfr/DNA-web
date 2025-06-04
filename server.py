@@ -24,7 +24,7 @@ AMINOS = {
     'T': {'3letter': 'Thr', 'sc_mass': 45.0339, 'pk1': 2.09, 'pk2': 9.1, 'sc_hphob': 0.25},
     'W': {'3letter': 'Trp', 'sc_mass': 130.0655, 'pk1': 2.46, 'pk2': 9.41, 'sc_hphob': -2.09, 'extco': 5500},
     'Y': {'3letter': 'Tyr', 'sc_mass': 107.0495, 'pk1': 2.2, 'pk2': 9.21, 'pk3': 10.07, 'sc_hphob': -0.71, 'extco': 1490},
-    'V': {'3letter': 'Val', 'sc_mass': 43.0546, 'pk1': 2.29, 'pk2': 9.72, 'sc_hphob': -0.46}
+    'V': {'3letter': 'Val', 'sc_mass': 43.0546, 'pk1': 2.39, 'pk2': 9.74, 'sc_hphob': -0.46}
 }
 
 CODON_TABLE = {
@@ -88,6 +88,7 @@ def translate_protein(seq):
             break
     return ''.join(letters), '-|-'.join(names), '-'.join(three)
 
+
 def count_aminos(sequence):
     counts = {k:0 for k in AMINOS}
     for aa in sequence:
@@ -95,11 +96,13 @@ def count_aminos(sequence):
             counts[aa] += 1
     return counts
 
+
 def calc_mass(counts):
     mass = 18.0153  # add water
     for aa, count in counts.items():
         mass += AMINOS[aa]['sc_mass'] * count
     return round(mass, 2)
+
 
 def net_charge(acids, bases, ph):
     c = 0.0
@@ -111,11 +114,16 @@ def net_charge(acids, bases, ph):
             c += v['count'] / (1 + 10**(ph - v['pk']))
     return c
 
+
 def calc_properties(sequence):
+    if not sequence:
+        return {}
+
     counts = count_aminos(sequence)
     mass = calc_mass(counts)
     first = sequence[0]
     last = sequence[-1]
+
     acids = {
         'C-term': {'count':1,'pk':AMINOS[first]['pk1']},
         'D': {'count':counts['D'],'pk':AMINOS['D'].get('pk3',0)},
@@ -129,16 +137,19 @@ def calc_properties(sequence):
         'R': {'count':counts['R'],'pk':AMINOS['R'].get('pk3',0)},
         'H': {'count':counts['H'],'pk':AMINOS['H'].get('pk3',0)}
     }
+
     pI = 0.0
     for pH in [x/100 for x in range(0,1400)]:
         if net_charge(acids,bases,pH) <= 0:
             pI = pH
             break
-    charge = round(net_charge(acids,bases,7))
+
+    charge = round(net_charge(acids,bases,7), 3)
     hydrophobicity = 7.9
     for aa, count in counts.items():
         hydrophobicity += count * AMINOS[aa]['sc_hphob']
     hydrophobicity = round(hydrophobicity,2)
+
     return {
         'length': len(sequence),
         'mass': mass,
@@ -148,44 +159,69 @@ def calc_properties(sequence):
     }
 
 class Handler(SimpleHTTPRequestHandler):
-    def _set_headers(self):
-        self.send_header('Content-Type', 'application/json')
-        self.end_headers()
+    def do_GET(self):
+        # Serve static files
+        super().do_GET()
+    
     def do_POST(self):
         if self.path != '/api/translate':
             self.send_response(404)
+            self.send_header('Content-Type', 'application/json')
             self.end_headers()
+            self.wfile.write(b'{"error": "Not found"}')
             return
-        length = int(self.headers.get('Content-Length',0))
-        data = json.loads(self.rfile.read(length)) if length else {}
-        seq = data.get('sequence','').upper().replace(' ','')
-        trans_type = data.get('type','RNA')
-        mutate = data.get('mutate',False)
-        freq = float(data.get('frequency',0))
-        if mutate and freq:
-            seq = mutate_chain(seq, freq)
-        if trans_type == 'RNA':
-            result = {'rna': dna_to_rna(seq)}
-        else:
-            letters, names, three = translate_protein(seq)
-            props = calc_properties(letters) if letters else {}
-            result = {
-                'letters': letters,
-                'names': names,
-                'three': three,
-                'properties': props
-            }
-        self.send_response(200)
-        self._set_headers()
-        self.wfile.write(json.dumps(result).encode())
+        
+        try:
+            length = int(self.headers.get('Content-Length', 0))
+            data = json.loads(self.rfile.read(length).decode('utf-8')) if length else {}
+            
+            seq = data.get('sequence', '').upper().replace(' ', '')
+            trans_type = data.get('type', 'RNA')
+            mutate = data.get('mutate', False)
+            freq = float(data.get('frequency', 0))
+            
+            if mutate and freq:
+                seq = mutate_chain(seq, freq)
+            
+            if trans_type == 'RNA':
+                result = {'rna': dna_to_rna(seq)}
+            else:
+                letters, names, three = translate_protein(seq)
+                props = calc_properties(letters) if letters else {}
+                result = {
+                    'letters': letters,
+                    'names': names,
+                    'three': three,
+                    'properties': props
+                }
+            
+            self.send_response(200)
+            self.send_header('Content-Type', 'application/json')
+            self.send_header('Access-Control-Allow-Origin', '*')
+            self.send_header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
+            self.send_header('Access-Control-Allow-Headers', 'Content-Type')
+            self.end_headers()
+            self.wfile.write(json.dumps(result).encode('utf-8'))
+            
+        except Exception as e:
+            self.send_response(500)
+            self.send_header('Content-Type', 'application/json')
+            self.end_headers()
+            self.wfile.write(json.dumps({'error': str(e)}).encode('utf-8'))
 
+    def do_OPTIONS(self):
+        self.send_response(200)
+        self.send_header('Access-Control-Allow-Origin', '*')
+        self.send_header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
+        self.send_header('Access-Control-Allow-Headers', 'Content-Type')
+        self.end_headers()
 
 def run(server_class=HTTPServer, handler_class=Handler, port=8000):
     server_address = ('', port)
     httpd = server_class(server_address, handler_class)
-    print(f'Serving on port {port}')
+    print(f'Servidor ejecutándose en puerto {port}')
+    print(f'Visita http://localhost:{port} para acceder a la aplicación')
     httpd.serve_forever()
-
 
 if __name__ == '__main__':
     env_port = os.environ.get('PORT')
