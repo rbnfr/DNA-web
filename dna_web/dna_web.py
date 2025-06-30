@@ -7,7 +7,7 @@ import reflex as rx
 class DNAAnalyzer(rx.State):
     """Main state of the DNA Web app"""
 
-    # Datos de aminoácidos y tabla de codones (copiados del servidor original)
+    # Amino-acid data
     AMINOS = {
         "A": {
             "3letter": "Ala",
@@ -181,6 +181,7 @@ class DNAAnalyzer(rx.State):
         },
     }
 
+    # Codon table for translation
     CODON_TABLE = {
         "GCT": "A",
         "GCC": "A",
@@ -248,20 +249,20 @@ class DNAAnalyzer(rx.State):
         "TGA": "_",
     }
 
-    # Estados de la interfaz
+    # Interface states
     dna_sequence: str = ""
     sequence_length_input: str = ""
     conversion_type: str = ""
     mutations_enabled: bool = False
     mutation_frequency: str = ""
 
-    # Resultados
+    # Results
     rna_result: str = ""
     protein_letters: str = ""
     protein_three_letter: str = ""
     protein_full_names: str = ""
 
-    # Propiedades de la proteína
+    # Protein properties
     protein_length: str = ""
     protein_mass: str = ""
     protein_pi: str = ""
@@ -270,24 +271,23 @@ class DNAAnalyzer(rx.State):
 
     @rx.var
     def sequence_length(self) -> str:
-        """Calcula la longitud actual de la secuencia de ADN."""
+        """Calc and return the length of the DNA sequence."""
         return f"Longitud: {len(self.dna_sequence)}"
 
     def validate_dna_sequence(self, value: str):
-        """Valida y filtra la secuencia de ADN para contener solo A, C, T, G."""
-        # Filtrar solo caracteres válidos (A, C, T, G) y convertir a mayúsculas
+        """Validates and filters the DNA sequence to contain only A, C, T, G."""
         filtered_sequence = "".join(
             char.upper() for char in value if char.upper() in ["A", "C", "T", "G"]
         )
         self.dna_sequence = filtered_sequence
 
     async def handle_file_upload(self, files: list[rx.UploadFile]):
-        """Maneja la carga de archivos de secuencia de ADN."""
+        """Handles the upload of DNA sequence files."""
         for file in files:
             upload_data = await file.read()
             content = upload_data.decode("utf-8")
 
-            # Filtrar solo caracteres válidos de ADN del contenido del archivo
+            # Filter only valid DNA characters from the file content
             filtered_sequence = "".join(
                 char.upper() for char in content if char.upper() in ["A", "C", "T", "G"]
             )
@@ -295,15 +295,15 @@ class DNAAnalyzer(rx.State):
             if filtered_sequence:
                 self.dna_sequence = filtered_sequence
                 yield rx.toast.success(
-                    f"Secuencia cargada: {len(filtered_sequence)} nucleótidos"
+                    f"Loaded sequence: {len(filtered_sequence)} nucleotides"
                 )
             else:
                 yield rx.toast.error(
-                    "No se encontraron nucleótidos válidos en el archivo"
+                    "No valid nucleotides found in the file. Please upload a valid DNA sequence file."
                 )
 
     def generate_sequence(self):
-        """Genera una secuencia de ADN aleatoria."""
+        """Generates a random DNA sequence."""
         try:
             length = (
                 int(self.sequence_length_input)
@@ -318,7 +318,7 @@ class DNAAnalyzer(rx.State):
         self.dna_sequence = sequence
 
     def clear_all(self):
-        """Limpia todos los campos."""
+        """Clear all fields."""
         self.dna_sequence = ""
         self.sequence_length_input = ""
         self.conversion_type = ""
@@ -335,12 +335,12 @@ class DNAAnalyzer(rx.State):
         self.protein_hydrophobicity = ""
 
     def dna_to_rna(self, seq: str) -> str:
-        """Convierte ADN a ARN."""
+        """Converts DNA to RNA."""
         mapping = {"A": "U", "T": "A", "C": "G", "G": "C"}
         return "".join(mapping.get(c, "") for c in seq)
 
     def mutate_chain(self, sequence: str, frequency: float) -> str:
-        """Aplica mutaciones a la secuencia."""
+        """Applies mutations to the sequence."""
         chars = ["A", "T", "C", "G"]
         freq_per = 100 / frequency
         seq = list(sequence)
@@ -353,7 +353,7 @@ class DNAAnalyzer(rx.State):
         return "".join(seq)
 
     def translate_protein(self, seq: str) -> tuple[str, str, str]:
-        """Traduce ADN a proteína."""
+        """Translates DNA to protein."""
         letters = []
         three = []
         names = []
@@ -376,7 +376,7 @@ class DNAAnalyzer(rx.State):
         return "".join(letters), "-|-".join(names), "-".join(three)
 
     def count_aminos(self, sequence: str) -> Dict[str, int]:
-        """Cuenta los aminoácidos en la secuencia."""
+        """Counts the amino acids in the sequence."""
         counts = {k: 0 for k in self.AMINOS}
         for aa in sequence:
             if aa in counts:
@@ -384,14 +384,14 @@ class DNAAnalyzer(rx.State):
         return counts
 
     def calc_mass(self, counts: Dict[str, int]) -> float:
-        """Calcula la masa molecular."""
+        """Calculates the molecular mass."""
         mass = 18.0153  # añadir agua
         for aa, count in counts.items():
             mass += self.AMINOS[aa]["sc_mass"] * count
         return round(mass, 2)
 
     def net_charge(self, acids: Dict, bases: Dict, ph: float) -> float:
-        """Calcula la carga neta."""
+        """Calculates the net charge."""
         c = 0.0
         for v in acids.values():
             if v["count"] > 0:
@@ -402,7 +402,7 @@ class DNAAnalyzer(rx.State):
         return c
 
     def calc_properties(self, sequence: str) -> Dict:
-        """Calcula propiedades de la proteína."""
+        """Calculates properties of the protein."""
         if not sequence:
             return {}
 
@@ -449,7 +449,7 @@ class DNAAnalyzer(rx.State):
         }
 
     def translate(self):
-        """Realiza la traducción según el tipo seleccionado."""
+        """Translates according to the selected type."""
         if not self.dna_sequence:
             return
 
@@ -458,7 +458,7 @@ class DNAAnalyzer(rx.State):
 
         sequence = self.dna_sequence
 
-        # Aplicar mutaciones si están habilitadas
+        # Apply mutations if enabled
         if self.mutations_enabled and self.mutation_frequency:
             try:
                 freq = float(self.mutation_frequency)
@@ -469,7 +469,7 @@ class DNAAnalyzer(rx.State):
 
         if self.conversion_type == "ARN":
             self.rna_result = self.dna_to_rna(sequence)
-            # Limpiar resultados de proteína
+            # Clear protein results
             self.protein_letters = ""
             self.protein_three_letter = ""
             self.protein_full_names = ""
@@ -484,7 +484,7 @@ class DNAAnalyzer(rx.State):
             self.protein_full_names = names
             self.protein_three_letter = three
 
-            # Calcular propiedades
+            # Calculate properties
             if letters:
                 props = self.calc_properties(letters)
                 self.protein_length = str(props.get("length", ""))
@@ -495,12 +495,11 @@ class DNAAnalyzer(rx.State):
                 self.protein_charge = str(props.get("charge", ""))
                 self.protein_hydrophobicity = str(props.get("hydrophobicity", ""))
 
-            # Limpiar resultado de ARN
+            # Clear RNA result
             self.rna_result = ""
 
 
 def navbar() -> rx.Component:
-    """Componente de navegación."""
     return rx.box(
         rx.hstack(
             rx.heading("DNA Web", size="7", color="white"),
@@ -515,11 +514,11 @@ def navbar() -> rx.Component:
 
 
 def input_section() -> rx.Component:
-    """Sección de entrada de datos."""
+    """Input data section."""
     return rx.vstack(
-        rx.text("Secuencia de ADN", font_weight="bold"),
+        rx.text("DNA Sequence", font_weight="bold"),
         rx.text_area(
-            placeholder="Solo A, C, T, G permitidos",
+            placeholder="Only A, C, T, G allowed",
             value=DNAAnalyzer.dna_sequence,
             on_change=DNAAnalyzer.validate_dna_sequence,
             rows="5",
@@ -532,19 +531,19 @@ def input_section() -> rx.Component:
         ),
         rx.hstack(
             rx.button(
-                "Generar secuencia",
+                "Generate sequence",
                 on_click=DNAAnalyzer.generate_sequence,
                 variant="soft",
                 margin_right="0.5rem",
             ),
             rx.button(
-                "Limpiar",
+                "Clear",
                 on_click=DNAAnalyzer.clear_all,
                 variant="soft",
                 margin_right="0.5rem",
             ),
             rx.input(
-                placeholder="Longitud",
+                placeholder="Length (optional)",
                 value=DNAAnalyzer.sequence_length_input,
                 on_change=DNAAnalyzer.set_sequence_length_input,
                 type="number",
@@ -554,17 +553,17 @@ def input_section() -> rx.Component:
             margin_top="1rem",
         ),
         rx.vstack(
-            rx.text("Cargar desde archivo", font_weight="bold", margin_top="1rem"),
+            rx.text("Load from file", font_weight="bold", margin_top="1rem"),
             rx.upload(
                 rx.vstack(
                     rx.button(
-                        "Seleccionar archivo de secuencia",
+                        "Select sequence file",
                         color="rgb(107, 99, 246)",
                         bg="white",
                         border="1px solid rgb(107, 99, 246)",
                     ),
                     rx.text(
-                        "Arrastra un archivo .txt o .fasta aquí",
+                        "Drag a .txt or .fasta file here",
                         font_size="0.875rem",
                         color="gray",
                     ),
@@ -579,7 +578,7 @@ def input_section() -> rx.Component:
                 },
             ),
             rx.button(
-                "Cargar archivo",
+                "Load file",
                 on_click=DNAAnalyzer.handle_file_upload(
                     rx.upload_files(upload_id="upload_dna")
                 ),
@@ -597,12 +596,12 @@ def input_section() -> rx.Component:
 
 
 def controls_section() -> rx.Component:
-    """Sección de controles."""
+    """Controls section."""
     return rx.vstack(
-        rx.text("Tipo de traducción", font_weight="bold"),
+        rx.text("Translation type", font_weight="bold"),
         rx.select(
-            ["ARN", "Proteína"],
-            placeholder="Selecciona tipo",
+            ["ARN", "Protein"],
+            placeholder="Select type",
             value=DNAAnalyzer.conversion_type,
             on_change=DNAAnalyzer.set_conversion_type,
             width="100%",
@@ -612,7 +611,7 @@ def controls_section() -> rx.Component:
                 checked=DNAAnalyzer.mutations_enabled,
                 on_change=DNAAnalyzer.set_mutations_enabled,
             ),
-            rx.text("Mutaciones"),
+            rx.text("Mutations"),
             align="center",
             margin_top="1rem",
         ),
@@ -626,7 +625,7 @@ def controls_section() -> rx.Component:
             margin_top="0.5rem",
         ),
         rx.button(
-            "Traducir",
+            "Translate",
             on_click=DNAAnalyzer.translate,
             color_scheme="blue",
             width="100%",
@@ -639,12 +638,12 @@ def controls_section() -> rx.Component:
 
 
 def results_section() -> rx.Component:
-    """Sección de resultados."""
+    """Results section."""
     return rx.vstack(
         rx.cond(
             DNAAnalyzer.rna_result != "",
             rx.vstack(
-                rx.text("ARN", font_weight="bold"),
+                rx.text("RNA", font_weight="bold"),
                 rx.text_area(
                     value=DNAAnalyzer.rna_result,
                     read_only=True,
@@ -658,14 +657,14 @@ def results_section() -> rx.Component:
         rx.cond(
             DNAAnalyzer.protein_letters != "",
             rx.vstack(
-                rx.text("Cadena de una letra", font_weight="bold"),
+                rx.text("Single letter chain", font_weight="bold"),
                 rx.text_area(
                     value=DNAAnalyzer.protein_letters,
                     read_only=True,
                     rows="3",
                     width="100%",
                 ),
-                rx.text("Cadena de tres letras", font_weight="bold", margin_top="1rem"),
+                rx.text("Three letter chain", font_weight="bold", margin_top="1rem"),
                 rx.text_area(
                     value=DNAAnalyzer.protein_three_letter,
                     read_only=True,
@@ -673,7 +672,7 @@ def results_section() -> rx.Component:
                     width="100%",
                 ),
                 rx.text(
-                    "Cadena de nombres completos", font_weight="bold", margin_top="1rem"
+                    "Full name chain", font_weight="bold", margin_top="1rem"
                 ),
                 rx.text_area(
                     value=DNAAnalyzer.protein_full_names,
@@ -692,31 +691,31 @@ def results_section() -> rx.Component:
 
 
 def properties_section() -> rx.Component:
-    """Sección de propiedades de la proteína."""
+    """Protein properties section."""
     return rx.vstack(
         rx.heading(
-            "Propiedades estimadas de la proteína", size="5", margin_bottom="1rem"
+            "Estimated protein properties", size="5", margin_bottom="1rem"
         ),
         rx.table.root(
             rx.table.body(
                 rx.table.row(
-                    rx.table.cell("Longitud", font_weight="bold"),
+                    rx.table.cell("Length", font_weight="bold"),
                     rx.table.cell(DNAAnalyzer.protein_length),
                 ),
                 rx.table.row(
-                    rx.table.cell("Masa", font_weight="bold"),
+                    rx.table.cell("Mass", font_weight="bold"),
                     rx.table.cell(DNAAnalyzer.protein_mass),
                 ),
                 rx.table.row(
-                    rx.table.cell("Punto isoeléctrico (pI)", font_weight="bold"),
+                    rx.table.cell("Isoelectric point (pI)", font_weight="bold"),
                     rx.table.cell(DNAAnalyzer.protein_pi),
                 ),
                 rx.table.row(
-                    rx.table.cell("Carga neta", font_weight="bold"),
+                    rx.table.cell("Net charge", font_weight="bold"),
                     rx.table.cell(DNAAnalyzer.protein_charge),
                 ),
                 rx.table.row(
-                    rx.table.cell("Hidrofobicidad", font_weight="bold"),
+                    rx.table.cell("Hydrophobicity", font_weight="bold"),
                     rx.table.cell(DNAAnalyzer.protein_hydrophobicity),
                 ),
             ),
@@ -728,7 +727,7 @@ def properties_section() -> rx.Component:
 
 
 def index() -> rx.Component:
-    """Página principal de la aplicación."""
+    """Main page of the application."""
     return rx.container(
         navbar(),
         rx.grid(
@@ -749,6 +748,6 @@ def index() -> rx.Component:
     )
 
 
-# Configuración de la aplicación
+# App config
 app = rx.App()
 app.add_page(index, route="/")
