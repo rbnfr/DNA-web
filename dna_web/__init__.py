@@ -1,4 +1,4 @@
-"""Paquete principal de la aplicación DNA Web."""
+"""Main package of the DNA Web application."""
 
 from dna_web.state import DNAAnalyzer
 from dna_web.pages import index

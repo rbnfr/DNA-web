@@ -1,11 +1,11 @@
-"""Componente de sección de resultados para la aplicación DNA Web."""
+"""Results component for the DNA Web application."""
 
 import reflex as rx
 from dna_web.state.dna_analyzer import DNAAnalyzer
 
 
 def results_section() -> rx.Component:
-    """Sección de resultados."""
+    """Results section."""
     return rx.vstack(
         rx.cond(
             DNAAnalyzer.rna_result != "",

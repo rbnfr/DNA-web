@@ -1,4 +1,4 @@
-"""Página principal de la aplicación DNA Web."""
+"""Main page of the DNA Web application."""
 
 import reflex as rx
 from dna_web.components.navbar import navbar
@@ -9,7 +9,7 @@ from dna_web.components.properties_section import properties_section
 
 
 def index() -> rx.Component:
-    """Página principal de la aplicación."""
+    """Main page of the DNA Web application."""
     return rx.container(
         navbar(),
         rx.grid(

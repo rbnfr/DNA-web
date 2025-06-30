@@ -1,4 +1,4 @@
-"""Archivo __init__.py para el paquete components."""
+"""__init__.py file for components package."""
 
 from dna_web.components.navbar import navbar
 from dna_web.components.input_section import input_section

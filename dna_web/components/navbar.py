@@ -1,10 +1,10 @@
-"""Componente de barra de navegación para la aplicación DNA Web."""
+"""Navigation component for the DNA Web application."""
 
 import reflex as rx
 
 
 def navbar() -> rx.Component:
-    """Devuelve el componente de barra de navegación."""
+    """Returns the navigation component."""
     return rx.box(
         rx.hstack(
             rx.heading("DNA Web", size="7", color="white"),

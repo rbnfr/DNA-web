@@ -1,11 +1,11 @@
-"""Componente de sección de propiedades para la aplicación DNA Web."""
+"""Properties section for the DNA Web application.""" 
 
 import reflex as rx
 from dna_web.state.dna_analyzer import DNAAnalyzer
 
 
 def properties_section() -> rx.Component:
-    """Sección de propiedades de proteínas."""
+    """Properties section for proteins."""
     return rx.vstack(
         rx.heading(
             "Estimated protein properties", size="5", margin_bottom="1rem"

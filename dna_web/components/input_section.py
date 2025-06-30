@@ -1,11 +1,11 @@
-"""Componente de sección de entrada para la aplicación DNA Web."""
+"""Input section component for the DNA Web application."""
 
 import reflex as rx
 from dna_web.state.dna_analyzer import DNAAnalyzer
 
 
 def input_section() -> rx.Component:
-    """Sección de datos de entrada."""
+    """Input data section."""
     return rx.vstack(
         rx.text("DNA Sequence", font_weight="bold"),
         rx.text_area(

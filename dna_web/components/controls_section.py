@@ -1,11 +1,11 @@
-"""Componente de sección de controles para la aplicación DNA Web."""
+"""Controls section component for the DNA Web application."""
 
 import reflex as rx
 from dna_web.state.dna_analyzer import DNAAnalyzer
 
 
 def controls_section() -> rx.Component:
-    """Sección de controles."""
+    """Controls section."""
     return rx.vstack(
         rx.text("Translation type", font_weight="bold"),
         rx.select(

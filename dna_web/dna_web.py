@@ -1,4 +1,4 @@
-"""Punto de entrada principal para la aplicación DNA Web."""
+"""Entry point for the DNA Web application."""
 
 import reflex as rx
 from dna_web.pages import index
