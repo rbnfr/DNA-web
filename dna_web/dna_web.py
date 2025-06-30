@@ -5,7 +5,7 @@ import reflex as rx
 
 
 class DNAAnalyzer(rx.State):
-    """Estado principal de la aplicación DNA Web."""
+    """Main state of the DNA Web app"""
 
     # Datos de aminoácidos y tabla de codones (copiados del servidor original)
     AMINOS = {
