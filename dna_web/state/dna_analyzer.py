@@ -360,14 +360,14 @@ class DNAAnalyzer(rx.State):
 
         for i in range(0, len(seq) - 2, 3):
             codon = seq[i : i + 3]
-            aa = self.CODON_TABLE.get(codon, "")
-            if aa:
-                letters.append(aa)
-                if aa == "_":
+            aminoacid = self.CODON_TABLE.get(codon, "")
+            if aminoacid:
+                letters.append(aminoacid)
+                if aminoacid == "_":
                     names.append("STOP")
                     three.append("STOP")
                 else:
-                    info = self.AMINOS[aa]
+                    info = self.AMINOS[aminoacid]
                     names.append(info["fullname"])
                     three.append(info["3letter"])
             else:
