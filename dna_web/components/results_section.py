@@ -16,6 +16,13 @@ def results_section() -> rx.Component:
                     read_only=True,
                     rows="3",
                     width="100%",
+                    style={
+                        "resize": "both",
+                        "min_height": "4rem",
+                        "max_height": "20rem",
+                        "min_width": "200px",
+                        "max_width": "100%",
+                    },
                 ),
                 width="100%",
                 align="start",
@@ -30,6 +37,13 @@ def results_section() -> rx.Component:
                     read_only=True,
                     rows="3",
                     width="100%",
+                    style={
+                        "resize": "both",
+                        "min_height": "4rem",
+                        "max_height": "20rem",
+                        "min_width": "200px",
+                        "max_width": "100%",
+                    },
                 ),
                 rx.text("Three letter chain", font_weight="bold", margin_top="1rem"),
                 rx.text_area(
@@ -37,6 +51,13 @@ def results_section() -> rx.Component:
                     read_only=True,
                     rows="3",
                     width="100%",
+                    style={
+                        "resize": "both",
+                        "min_height": "4rem",
+                        "max_height": "20rem",
+                        "min_width": "200px",
+                        "max_width": "100%",
+                    },
                 ),
                 rx.text(
                     "Full name chain", font_weight="bold", margin_top="1rem"
@@ -46,6 +67,13 @@ def results_section() -> rx.Component:
                     read_only=True,
                     rows="3",
                     width="100%",
+                    style={
+                        "resize": "both",
+                        "min_height": "4rem",
+                        "max_height": "20rem",
+                        "min_width": "200px",
+                        "max_width": "100%",
+                    },
                 ),
                 width="100%",
                 align="start",

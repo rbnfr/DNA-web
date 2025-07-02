@@ -10,10 +10,12 @@ def controls_section() -> rx.Component:
         rx.text("Translation type", font_weight="bold"),
         rx.select(
             ["ARN", "Protein"],
+            default_value="ARN",
             placeholder="Select type",
             value=DNAAnalyzer.conversion_type,
             on_change=DNAAnalyzer.set_conversion_type,
-            width="100%",
+            width="20%",
+            margin_right="auto",
         ),
         rx.hstack(
             rx.switch(
@@ -22,6 +24,8 @@ def controls_section() -> rx.Component:
             ),
             rx.text("Mutations"),
             align="center",
+            width="20%",
+            margin_right="auto",
             margin_top="1rem",
         ),
         rx.input(
@@ -30,15 +34,18 @@ def controls_section() -> rx.Component:
             on_change=DNAAnalyzer.set_mutation_frequency,
             disabled=rx.cond(DNAAnalyzer.mutations_enabled, False, True),
             type="number",
-            width="100%",
+            width="10%",
             margin_top="0.5rem",
+            margin_right="auto",
         ),
         rx.button(
             "Translate",
             on_click=DNAAnalyzer.translate,
             color_scheme="blue",
-            width="100%",
+            width="20%",
             margin_top="1rem",
+            margin_left="auto",
+            margin_right="auto",
         ),
         width="100%",
         align="start",

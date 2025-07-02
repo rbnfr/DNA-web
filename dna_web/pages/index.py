@@ -26,7 +26,7 @@ def index() -> rx.Component:
             rx.box(
                 width="4px",
                 height="100%",
-                bg="gray.300",
+                bg="#343374",
                 cursor="col-resize",
                 _hover={"bg": "white"},
                 position="relative",
