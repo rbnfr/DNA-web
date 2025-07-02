@@ -10,21 +10,48 @@ from dna_web.components.properties_section import properties_section
 
 def index() -> rx.Component:
     """Main page of the DNA Web application."""
-    return rx.container(
+    return rx.box(
         navbar(),
-        rx.grid(
-            input_section(),
-            controls_section(),
-            columns="2fr 1fr",
-            spacing="4",
-            margin_bottom="2rem",
+        rx.color_mode.button(position="top-right"),
+        rx.flex(
+            # Columna izquierda: Input + Controles
+            rx.box(
+                input_section(),
+                controls_section(),
+                width="66%",
+                padding_right="1rem",
+                overflow="auto",
+            ),
+            # Separador redimensionable
+            rx.box(
+                width="4px",
+                height="100%",
+                bg="gray.300",
+                cursor="col-resize",
+                _hover={"bg": "white"},
+                position="relative",
+                z_index="1",
+                style={
+                    "resize": "horizontal",
+                    "user-select": "none",
+                    "min-width": "4px",
+                    "max-width": "4px",
+                },
+            ),
+            # Columna derecha: Resultados + Propiedades
+            rx.box(
+                results_section(),
+                properties_section(),
+                width="34%",
+                padding_left="1rem",
+                overflow="auto",
+            ),
+            direction="row",
+            width="100%",
+            height="calc(100vh - 120px)",
+            position="relative",
         ),
-        rx.grid(
-            results_section(),
-            properties_section(),
-            columns="2fr 1fr",
-            spacing="4",
-        ),
-        max_width="1200px",
-        padding="1rem",
+        width="100vw",
+        padding="2rem",
+        min_height="100vh",
     )
